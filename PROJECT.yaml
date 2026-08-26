@@ -44,6 +44,7 @@ context:
   constitution: .ai/constitution/
   product: docs/product/
   architecture: docs/architecture/
+  guides: docs/guides/
   decisions: docs/decisions/
   current_state: docs/status/current-state.md
 

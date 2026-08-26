@@ -2,7 +2,7 @@
 
 ## Architectural style
 
-V1은 실행 시스템이 아니라 repository information architecture다. Persistent context를 책임별 계층으로 나누고 agent-specific entrypoint가 공통 core를 참조한다.
+V1 is a repository information architecture, not an executable system. It separates persistent context by responsibility and routes agent-specific entry points to a shared core.
 
 ```text
 Task prompt
@@ -20,24 +20,28 @@ Plan → Change → Verify → Review → Persist state
 
 ### Identity
 
-`PROJECT.yaml`은 이름, 유형, lifecycle, 지원 agent, principles, 현재 phase와 주요 context 경로를 기계가 읽을 수 있게 제공한다.
+`PROJECT.yaml` exposes the name, type, lifecycle, supported agents, principles, current phase, and canonical context paths as machine-readable data.
 
 ### Policy
 
-`.ai/constitution/`은 프로젝트와 task보다 오래 유지되는 engineering 및 documentation 원칙을 제공한다.
+`.ai/constitution/` provides engineering and documentation principles that outlive an individual task and usually outlive a project phase.
 
 ### Knowledge
 
-`docs/product/`, `docs/architecture/`, `docs/decisions/`가 무엇을 왜 만들고, 어떻게 구성하며, 왜 중요한 선택을 했는지 설명한다.
+`docs/product/`, `docs/architecture/`, and `docs/decisions/` explain what is being built, why it matters, how it is structured, and why significant choices were made.
+
+### Guidance
+
+`docs/guides/` contains repeatable operational procedures, including how to adopt this Starter in another repository. Guides reference policy and design sources rather than redefining them.
 
 ### Working state
 
-`docs/status/current-state.md`는 현재 phase에서 완료된 것과 다음 작업을 제공한다. 영구 원칙이나 상세 history는 담지 않는다.
+`docs/status/current-state.md` describes completed work and next actions for the current phase. It does not contain permanent principles or a detailed history.
 
 ### Adapters
 
-`AGENTS.md`와 `CLAUDE.md`는 각 도구가 공통 context를 발견하도록 돕는다. 도구별 문법과 로딩 차이만 허용한다.
+`AGENTS.md` and `CLAUDE.md` help their respective tools discover shared context. Only tool-specific syntax and loading differences belong in these files.
 
 ## Enforcement boundary
 
-Markdown은 판단과 절차를 안내하지만 강제 수단은 아니다. 향후 절대 위반하면 안 되는 규칙은 가능한 경우 test, linter, architecture check, CI 같은 deterministic quality gate로 승격한다. V1에는 아직 이 자동화를 구현하지 않는다.
+Markdown guides judgment and procedure but does not enforce compliance. Rules that must never be violated should eventually be promoted to deterministic quality gates such as tests, linters, architecture checks, and CI. V1 does not implement that automation.

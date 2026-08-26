@@ -1,66 +1,67 @@
 # Agent Development Starter
 
-AI coding agent가 이전 대화나 긴 초기 프롬프트 없이도 저장소만 읽고 일관된 방식으로 개발을 이어가게 하는 repository-first starter specification이다.
+Agent Development Starter (ADS) is a repository-first specification for AI-assisted software projects. It enables a coding agent to understand a project and continue work from repository evidence instead of depending on a previous conversation or a large initialization prompt.
 
-현재 저장소는 Starter 자체가 제안하는 방식을 먼저 적용하는 V1 foundation이다. Codex와 Claude Code를 초기 대상 agent로 삼되, 공통 설계와 정책은 특정 agent에 종속시키지 않는다.
+This repository is the V1 foundation and the first project to apply its own conventions. Codex and Claude Code are the initial supported agents, while the shared context remains agent-agnostic.
 
-## 왜 만드는가
+## Why it exists
 
-AI 보조 개발은 프로젝트의 목적, 설계 원칙, 현재 상태가 대화에만 남으면 세션이 바뀔 때 맥락을 잃는다. 이 프로젝트는 지속할 맥락을 저장소에 명시하고, task prompt는 현재 할 일에 집중하게 한다.
+Project intent, architecture, and working state are easy to lose when they exist only in chat history. ADS assigns each kind of durable context to a clear repository location so task prompts can focus on what needs to be done.
 
-핵심 목표는 다음 한 문장으로 요약된다.
+> A new agent session must be able to understand the project and identify the next work item from the repository alone.
 
-> 새로운 agent 세션이 이전 대화를 몰라도 저장소만 읽고 프로젝트를 이해하고 다음 작업을 시작할 수 있어야 한다.
+## Use this starter
 
-## 시작하기
+V1 does not include a CLI or generator. Adopting the starter is currently a deliberate, manual process:
 
-사람은 이 문서에서 시작한다. Agent는 자신에게 맞는 adapter에서 시작한다.
+1. Copy the foundation files into a new or existing repository.
+2. Replace starter-specific identity, product, architecture, and status content.
+3. Review the constitution instead of copying it blindly.
+4. Keep `AGENTS.md` and `CLAUDE.md` as thin adapters.
+5. Run the context bootstrap acceptance test in fresh agent sessions.
 
-- Codex 및 `AGENTS.md`를 지원하는 agent: `AGENTS.md`
+Follow the complete procedure in [`docs/guides/using-the-starter.md`](docs/guides/using-the-starter.md).
+
+## Entry points
+
+- Human entry point: `README.md`
+- Codex and `AGENTS.md`-compatible agents: `AGENTS.md`
 - Claude Code: `CLAUDE.md`
-- 프로젝트 정형 정보: `PROJECT.yaml`
-- 제품 및 아키텍처 원본: `docs/`
-- 장기 개발 원칙: `.ai/constitution/`
-- 현재 진행 상태: `docs/status/current-state.md`
+- Structured project identity: `PROJECT.yaml`
+- Durable engineering policy: `.ai/constitution/`
+- Product and architecture sources: `docs/product/` and `docs/architecture/`
+- Current working state: `docs/status/current-state.md`
 
-현재는 실행 가능한 CLI나 생성기가 없다. V1은 정보 구조와 context bootstrap contract를 검증하는 단계다.
-
-## V1 구조
+## V1 structure
 
 ```text
 .
-├── README.md                         # 사람을 위한 진입점
-├── PROJECT.yaml                      # 기계가 읽을 수 있는 프로젝트 identity card
-├── AGENTS.md                         # Codex 계열 진입 adapter
-├── CLAUDE.md                         # Claude Code 진입 adapter
+├── README.md                         # Human entry point
+├── PROJECT.yaml                      # Machine-readable project identity
+├── AGENTS.md                         # Codex-compatible adapter
+├── CLAUDE.md                         # Claude Code adapter
 ├── .ai/
-│   └── constitution/                 # 프로젝트 전반에 적용할 장기 원칙
+│   └── constitution/                 # Durable engineering policy
 │       ├── engineering-principles.md
 │       ├── agent-behavior.md
 │       └── documentation-policy.md
 └── docs/
-    ├── product/                      # 무엇을 왜 만드는가
-    │   ├── overview.md
-    │   ├── goals.md
-    │   └── scope.md
-    ├── architecture/                 # 어떻게 구성하고 맥락을 로드하는가
-    │   ├── overview.md
-    │   ├── repository-structure.md
-    │   └── agent-context-model.md
-    ├── decisions/                    # 결정과 근거
-    │   └── ADR-0001-repository-first-context.md
-    └── status/                       # 현재 작업 맥락
-        └── current-state.md
+    ├── product/                      # What is being built and why
+    ├── architecture/                 # Structure and context model
+    ├── guides/                       # Operational usage procedures
+    ├── decisions/                    # Decisions and rationale
+    └── status/                       # Current working context
 ```
 
-## 문서 책임 원칙
+## Documentation boundaries
 
-- `README.md`는 소개와 탐색만 담당하며 상세 설계를 복제하지 않는다.
-- `AGENTS.md`와 `CLAUDE.md`는 공통 원본을 읽게 하는 얇은 adapter다.
-- `PROJECT.yaml`은 프로젝트 identity와 phase를 정형 데이터로 제공한다.
-- `.ai/constitution/`은 쉽게 바뀌지 않는 개발 원칙을 정의한다.
-- `docs/product/`와 `docs/architecture/`는 제품·설계 설명의 source of truth다.
-- ADR은 중요한 결정의 이유와 결과를 보존한다.
-- `current-state.md`는 완료·다음 작업·열린 결정을 복원한다.
+- `README.md` introduces and routes; it does not duplicate the full design.
+- `AGENTS.md` and `CLAUDE.md` are thin adapters to shared sources of truth.
+- `PROJECT.yaml` provides structured identity and phase data.
+- `.ai/constitution/` defines principles that change infrequently.
+- `docs/product/` and `docs/architecture/` own product and design knowledge.
+- `docs/guides/` owns repeatable human-facing procedures.
+- ADRs preserve important decisions and their consequences.
+- `current-state.md` restores progress, next work, and open decisions.
 
-상세한 책임과 의존 방향은 `docs/architecture/repository-structure.md`를 따른다.
+See `docs/architecture/repository-structure.md` for the complete responsibility and dependency model.

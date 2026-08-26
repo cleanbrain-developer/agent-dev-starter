@@ -4,47 +4,52 @@ Last updated: 2026-08-27
 
 ## Current phase
 
-V1 Foundation — repository가 외부 대화 없이 스스로 목적, 원칙, 구조, 상태를 설명할 수 있는 최소 specification을 구성하고 검증한다.
+V1 Foundation — establish and validate the minimum specification that allows the repository to explain its purpose, principles, structure, and state without external conversation history.
 
 ## Completed
 
-- Repository 이름을 `agent-dev-starter`, 제품명을 Agent Development Starter로 확정했다.
-- Repository-first context와 agent-agnostic core 방향을 채택했다.
-- Codex와 Claude Code를 초기 지원 agent로 정했다.
-- Human entrypoint, structured manifest, agent adapters, constitution, product, architecture, ADR, working state의 책임을 분리했다.
-- V1 디렉터리 구조와 핵심 문서를 생성했다.
-- ADR-0001로 repository-first context 결정을 영속화했다.
-- CLI, skills, templates, presets, CI를 V1 foundation 범위에서 제외했다.
-- 로컬 Git repository를 초기화하고 GitHub 원격 저장소를 연결했다.
+- Finalized the repository name `agent-dev-starter` and product name Agent Development Starter.
+- Adopted repository-first context and an agent-agnostic core.
+- Selected Codex and Claude Code as the initial supported agents.
+- Separated the responsibilities of the human entry point, structured manifest, agent adapters, constitution, product, architecture, guides, ADRs, and working state.
+- Created the V1 directory structure and core documents.
+- Persisted the repository-first context decision in ADR-0001.
+- Excluded the CLI, skills, templates, presets, and CI from the V1 foundation.
+- Initialized the Git repository and connected it to GitHub.
+- Standardized all persistent repository documentation in English.
+- Added a manual adoption guide for using the Starter in another project.
 
 ## In progress
 
-- 새 Codex 및 Claude Code 세션에서 context bootstrap acceptance test 수행
-- 문서 간 중복, 누락, 모순에 대한 사람 검토
+- Run context bootstrap acceptance tests in fresh Codex and Claude Code sessions.
+- Review the English documentation for duplication, omissions, and contradictions.
 
 ## Next
 
-1. 공유 대화 없이 새 세션에서 `AGENTS.md`와 `CLAUDE.md` bootstrap을 각각 검증한다.
-2. 검증 결과에 따라 문서 탐색 순서와 최소 필수 context를 조정한다.
-3. `PROJECT.yaml` V1 schema의 필수 필드와 validation 수준을 결정한다.
-4. 반복 workflow가 실제로 확인된 뒤 plan, verify, review skill의 최소 규격을 결정한다.
+1. Validate the `AGENTS.md` and `CLAUDE.md` bootstraps independently in fresh sessions without a shared conversation.
+2. Use the results to adjust document discovery order and minimum required context.
+3. Validate the manual adoption guide against the first derived project.
+4. Decide the required fields and validation level for the V1 `PROJECT.yaml` schema.
+5. Define the minimum plan, verify, and review skill specifications only after repeated workflows have been observed.
 
 ## Open decisions
 
-- `PROJECT.yaml`을 단순 manifest로 유지할지 별도 machine-validatable schema를 제공할지
-- 공통 skills의 canonical location과 Claude Code/Codex 검색 경로로의 배포 방식
-- Template repository를 V2의 주 배포 방식으로 사용할지
-- CLI가 필요해지는 기준, 구현 언어, 명령 이름
-- 문서 규칙 중 어떤 항목을 test, lint, CI로 우선 승격할지
-- 지원 agent가 늘어날 때 adapter compatibility를 어떻게 검증할지
+- Whether `PROJECT.yaml` remains a simple manifest or receives a separate machine-validatable schema
+- The canonical location of shared skills and how they are distributed to Claude Code and Codex discovery paths
+- Whether a GitHub template repository becomes the primary V2 distribution method
+- The criteria for introducing a CLI, its implementation language, and command name
+- Which documentation rules should be promoted first to tests, linting, or CI
+- How adapter compatibility should be verified as supported agents expand
 
 ## Known constraints
 
-- Application code, tests, build system, CLI, automation은 아직 없다.
-- 최초 설계 대화는 bootstrap 근거로만 사용했으며, 이후 세션의 필수 context가 아니다.
+- There is no application code, test suite, build system, CLI, or automation yet.
+- The initial design conversation was used only as bootstrap evidence and is not required context for future sessions.
+- Adoption is manual until a later distribution mechanism is accepted and implemented.
 
 ## V1 exit criteria
 
-- 새 agent 세션이 외부 링크 없이 프로젝트 목적, 원칙, architecture, 현재 상태, 다음 작업을 정확히 복원한다.
-- 그 답의 모든 지속 가능한 근거가 repository 안에 있다.
-- Agent adapter에 공통 설계가 중복되어 있지 않다.
+- A new agent session accurately recovers the project purpose, principles, architecture, current state, and next work without an external link.
+- All durable evidence for that answer exists in the repository.
+- Shared design is not duplicated in agent adapters.
+- Another project can adopt the foundation by following the manual guide without relying on undocumented conversation context.

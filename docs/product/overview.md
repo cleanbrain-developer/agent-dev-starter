@@ -2,27 +2,27 @@
 
 ## Product
 
-Agent Development Starter(ADS)는 AI coding agent와 함께 개발하는 저장소의 지속 가능한 context, 작업 규약, 품질 경계를 표준화하기 위한 starter specification이다.
+Agent Development Starter (ADS) is a starter specification for durable context, working conventions, and quality boundaries in repositories developed with AI coding agents.
 
 ## Problem
 
-새 프로젝트와 새 agent 세션마다 목적, 설계, 테스트 규칙을 긴 프롬프트로 다시 설명하면 품질이 prompt 작성과 대화 기억에 의존한다. 세션이 종료되거나 agent가 바뀌면 결정 근거와 현재 작업 위치도 쉽게 사라진다.
+When every new project or agent session requires a large prompt that repeats purpose, architecture, and testing rules, development quality depends on prompt writing and conversation memory. Decision rationale and current working state are easily lost when a session ends or the agent changes.
 
 ## Product thesis
 
-프롬프트 자체를 표준화하는 대신, 프롬프트가 자유로워도 결과가 일관되도록 repository를 표준화한다. Task prompt는 무엇을 할지 말하고, repository는 프로젝트가 무엇이며 어떻게 일해야 하는지를 제공한다.
+Standardize the repository instead of standardizing every prompt. A task prompt states what should be done; the repository explains what the project is and how work should be performed.
 
 ## Users
 
-초기 사용자는 VS Code에서 Codex와 Claude Code를 함께 또는 번갈아 사용하는 개발자다. 장기적으로는 다른 coding agent도 공통 core를 재사용할 수 있어야 한다.
+The initial user is a developer who uses Codex and Claude Code together or interchangeably in VS Code. Other coding agents should be able to reuse the shared core over time.
 
 ## V1 experience
 
-저장소를 연 새 agent 세션에 entry adapter를 읽으라고 지시하면, 이전 대화 없이 다음을 설명할 수 있어야 한다.
+After being directed to its entry adapter, a new agent session must be able to explain the following without previous conversation history:
 
-- 프로젝트의 목적과 문제
-- 핵심 설계 원칙과 context hierarchy
-- 현재 phase와 완료 상태
-- 다음 작업과 열린 결정
+- The project's purpose and problem
+- Its core design principles and context hierarchy
+- Its current phase and completed work
+- Its next work and open decisions
 
-이 foundation이 검증된 뒤에만 template repository, reusable skills, CLI, technology preset, deterministic quality gate를 점진적으로 추가한다.
+Only after this foundation is validated should the project add a template repository, reusable skills, a CLI, technology presets, or deterministic quality gates.
