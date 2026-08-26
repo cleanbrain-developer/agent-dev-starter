@@ -1,0 +1,53 @@
+schema_version: 1
+
+project:
+  name: Agent Development Starter
+  repository: agent-dev-starter
+  abbreviation: ADS
+  type: development-starter
+  lifecycle: design
+
+purpose:
+  summary: >-
+    Standardize repository-driven development workflows for AI coding agents.
+  problem: >-
+    AI-assisted projects lose durable context when project intent, architecture,
+    and working state exist only in prompts or conversation history.
+
+supported_agents:
+  initial:
+    - codex
+    - claude-code
+  policy: agent-agnostic-core
+
+principles:
+  - repository-first-context
+  - agent-agnostic-core
+  - thin-agent-adapters
+  - explicit-architecture-decisions
+  - minimal-task-prompts
+  - evidence-before-change
+  - deterministic-quality-gates-when-implemented
+
+current_phase:
+  id: v1-foundation
+  status: active
+  goal: >-
+    Establish and validate the self-describing repository specification and
+    context bootstrap contract without implementing a CLI or generator.
+
+context:
+  human_entrypoint: README.md
+  agent_entrypoints:
+    codex: AGENTS.md
+    claude_code: CLAUDE.md
+  constitution: .ai/constitution/
+  product: docs/product/
+  architecture: docs/architecture/
+  decisions: docs/decisions/
+  current_state: docs/status/current-state.md
+
+delivery:
+  implementation_present: false
+  cli_present: false
+  automation_present: false
