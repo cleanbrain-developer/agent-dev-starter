@@ -22,10 +22,11 @@ The current user request, relevant code, and temporary research findings. Load i
 4. Read product documents to understand purpose and scope.
 5. Read architecture documents to understand structure and responsibilities.
 6. Read accepted ADRs relevant to the current work.
-7. Read `current-state.md` to recover the current position and next work.
-8. Inspect repository evidence relevant to the request.
-9. Plan, change, verify, and review.
-10. Persist durable decisions and working-state changes in the repository.
+7. Read relevant documents under `docs/guides/` for repeatable operational procedures.
+8. Read `current-state.md` to recover the current position and next work.
+9. Inspect repository evidence relevant to the request.
+10. Plan, change, verify, and review.
+11. Persist durable decisions and working-state changes in the repository.
 
 ## Conflict handling
 

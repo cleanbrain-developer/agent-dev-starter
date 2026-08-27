@@ -11,8 +11,9 @@ Before starting work, read the following in order:
 3. Every document under `docs/product/`
 4. Every document under `docs/architecture/`
 5. ADRs under `docs/decisions/` that are relevant to the current work
-6. `docs/status/current-state.md`
-7. Repository files relevant to the current request
+6. Relevant documents under `docs/guides/`
+7. `docs/status/current-state.md`
+8. Repository files relevant to the current request
 
 If documents conflict, prefer the more specific accepted ADR. If the conflict remains unresolved, report it instead of implementing an arbitrary interpretation.
 

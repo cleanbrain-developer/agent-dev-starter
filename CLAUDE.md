@@ -13,8 +13,9 @@ Before starting work, read the following in order:
 5. Relevant documents under `docs/product/`
 6. Relevant documents under `docs/architecture/`
 7. Relevant ADRs under `docs/decisions/`
-8. `docs/status/current-state.md`
-9. Repository files relevant to the current request
+8. Relevant documents under `docs/guides/`
+9. `docs/status/current-state.md`
+10. Repository files relevant to the current request
 
 ## Working contract
 

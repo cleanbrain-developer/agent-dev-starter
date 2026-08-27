@@ -18,19 +18,18 @@ V1 Foundation — establish and validate the minimum specification that allows t
 - Initialized the Git repository and connected it to GitHub.
 - Standardized all persistent repository documentation in English.
 - Added a manual adoption guide for using the Starter in another project.
+- Ran the context bootstrap acceptance test in independent, fresh Codex-style and Claude Code-style sessions (2026-08-27). Both correctly answered all five acceptance questions with citations to repository paths and no fabricated content. The test surfaced one real routing gap: `docs/guides/` was never included in `AGENTS.md`, `CLAUDE.md`, or `docs/architecture/agent-context-model.md`'s bootstrap order, so a fresh session could not discover the adoption guide. Fixed by adding a `docs/guides/` step to all three.
 
 ## In progress
 
-- Run context bootstrap acceptance tests in fresh Codex and Claude Code sessions.
-- Review the English documentation for duplication, omissions, and contradictions.
+- Review the English documentation for duplication, omissions, and contradictions. The 2026-08-27 acceptance test partially covered this: it found no content contradictions, but flagged that the bootstrap step list is stated independently in both the adapters (`AGENTS.md`, `CLAUDE.md`) and `docs/architecture/agent-context-model.md`, and that the five acceptance questions are phrased slightly differently across `docs/product/overview.md`, `docs/product/goals.md`, and `agent-context-model.md`. See Open decisions.
 
 ## Next
 
-1. Validate the `AGENTS.md` and `CLAUDE.md` bootstraps independently in fresh sessions without a shared conversation.
-2. Use the results to adjust document discovery order and minimum required context.
-3. Validate the manual adoption guide against the first derived project.
-4. Decide the required fields and validation level for the V1 `PROJECT.yaml` schema.
-5. Define the minimum plan, verify, and review skill specifications only after repeated workflows have been observed.
+1. Validate the manual adoption guide against the first derived project.
+2. Decide whether `AGENTS.md`/`CLAUDE.md` should keep restating the full bootstrap order or instead reference `docs/architecture/agent-context-model.md`, to resolve the step-list duplication found in the 2026-08-27 acceptance test.
+3. Decide the required fields and validation level for the V1 `PROJECT.yaml` schema.
+4. Define the minimum plan, verify, and review skill specifications only after repeated workflows have been observed.
 
 ## Open decisions
 
@@ -40,6 +39,7 @@ V1 Foundation — establish and validate the minimum specification that allows t
 - The criteria for introducing a CLI, its implementation language, and command name
 - Which documentation rules should be promoted first to tests, linting, or CI
 - How adapter compatibility should be verified as supported agents expand
+- Whether the adapters' bootstrap step list should reference `agent-context-model.md` instead of duplicating it, and which document should hold the single canonical wording of the five acceptance-test questions
 
 ## Known constraints
 
