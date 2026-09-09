@@ -38,4 +38,4 @@ The current user request, relevant code, and temporary research findings. Load i
 
 ## Bootstrap acceptance test
 
-In a clean session, provide only the entry adapter and no external link. Context recovery succeeds when the agent explains the product, principles, architecture, phase, and next work with supporting repository paths.
+In a clean session, provide only the entry adapter and no external link. Context recovery succeeds when the agent answers the five acceptance questions in `docs/product/goals.md` ("Success criteria"), with every answer traceable to repository documentation.

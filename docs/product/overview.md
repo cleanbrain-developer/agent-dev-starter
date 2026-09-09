@@ -18,11 +18,6 @@ The initial user is a developer who uses Codex and Claude Code together or inter
 
 ## V1 experience
 
-After being directed to its entry adapter, a new agent session must be able to explain the following without previous conversation history:
-
-- The project's purpose and problem
-- Its core design principles and context hierarchy
-- Its current phase and completed work
-- Its next work and open decisions
+After being directed to its entry adapter, a new agent session must be able to answer the five acceptance questions defined in `docs/product/goals.md` ("Success criteria") without previous conversation history, with every answer traceable to repository documentation.
 
 Only after this foundation is validated should the project add a template repository, reusable skills, a CLI, technology presets, or deterministic quality gates.

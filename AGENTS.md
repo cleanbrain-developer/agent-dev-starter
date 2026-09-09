@@ -4,18 +4,7 @@ This file is the repository entry point for Codex-compatible agents. Do not dupl
 
 ## Context bootstrap
 
-Before starting work, read the following in order:
-
-1. `PROJECT.yaml`
-2. Every document under `.ai/constitution/`
-3. Every document under `docs/product/`
-4. Every document under `docs/architecture/`
-5. ADRs under `docs/decisions/` that are relevant to the current work
-6. Relevant documents under `docs/guides/`
-7. `docs/status/current-state.md`
-8. Repository files relevant to the current request
-
-If documents conflict, prefer the more specific accepted ADR. If the conflict remains unresolved, report it instead of implementing an arbitrary interpretation.
+Read `PROJECT.yaml` first, then follow the bootstrap order and conflict-handling rules defined in `docs/architecture/agent-context-model.md`. This adapter does not restate that order — if this list and that document ever disagree, `agent-context-model.md` wins.
 
 ## Working contract
 

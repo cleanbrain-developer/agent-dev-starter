@@ -4,18 +4,7 @@ This file is the repository entry adapter for Claude Code. It is not the source 
 
 ## Required context
 
-Before starting work, read the following in order:
-
-1. `PROJECT.yaml`
-2. `.ai/constitution/engineering-principles.md`
-3. `.ai/constitution/agent-behavior.md`
-4. `.ai/constitution/documentation-policy.md`
-5. Relevant documents under `docs/product/`
-6. Relevant documents under `docs/architecture/`
-7. Relevant ADRs under `docs/decisions/`
-8. Relevant documents under `docs/guides/`
-9. `docs/status/current-state.md`
-10. Repository files relevant to the current request
+Read `PROJECT.yaml` first, then follow the bootstrap order and conflict-handling rules defined in `docs/architecture/agent-context-model.md`. This adapter does not restate that order — if this list and that document ever disagree, `agent-context-model.md` wins.
 
 ## Working contract
 
