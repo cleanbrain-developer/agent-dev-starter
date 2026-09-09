@@ -16,6 +16,10 @@ Start with an empty Git repository, copy the Starter foundation files into it, a
 
 Add the foundation to the existing repository without replacing application code or established documentation. Map existing authoritative documents to the ADS responsibilities first. Prefer linking or moving one source of truth over creating a duplicate.
 
+### Who performs the adoption
+
+Either mode above can be carried out by a human working through the steps below directly, or by an AI coding agent driving the same steps conversationally. In agent-driven adoption, the maintainer describes the target project in natural language (what it is, what it does, what it needs), and the agent performs the mechanical work — copying files, drafting `PROJECT.yaml` and the product/architecture documents, resetting `current-state.md`, removing stale Starter terms, running the acceptance test — while stopping to ask the maintainer only for the items marked **(human input required)** in "Adapt the repository in this order" below. An agent performing adoption must not invent product, scope, or architecture content to fill a document when the maintainer has not supplied it; ask instead. Creating a new Git repository or remote, and the first push, are out-of-band actions with external footprint — an agent must get explicit confirmation before either, separately from being asked to perform the adoption itself.
+
 ## Acquire the foundation
 
 Until a template distribution method is implemented, download the source archive from the [ADS GitHub repository](https://github.com/cleanbrain-developer/agent-dev-starter) or clone it into a temporary directory. Copy only the foundation paths listed below into the target repository. Never copy the Starter's `.git/` directory.
@@ -41,19 +45,21 @@ Create or keep the target project's own `README.md`, Git history, remote, source
 
 ## Adapt the repository in this order
 
-### 1. Define project identity
+Each step below notes whether it can be drafted from the maintainer's natural-language description of the target project, or whether it needs the maintainer's own judgment. "Agent-fillable" means a first draft can be produced from what the maintainer has already said; it still must reflect only what was actually said, never invented detail. "(human input required)" means the agent must stop and ask rather than guess.
+
+### 1. Define project identity — agent-fillable from the service description; confirm delivery/lifecycle state with the maintainer (human input required)
 
 Edit `PROJECT.yaml` first.
 
 - Replace the project name, repository name, type, lifecycle, purpose, and current phase.
 - Keep only agents that the target project supports.
-- Review every listed principle; do not retain one that the project will not follow.
+- Review every listed principle; do not retain one that the project will not follow. (human input required — the maintainer decides which principles the team will actually follow)
 - Keep canonical context paths accurate if the target repository uses different locations.
-- Set delivery flags to the target project's actual state.
+- Set delivery flags to the target project's actual state. (human input required — the agent cannot know what is actually implemented without being told or inspecting the repository)
 
 Do not use `PROJECT.yaml` as a narrative design document. Detailed explanations belong under `docs/`.
 
-### 2. Define the product
+### 2. Define the product — agent-fillable from the service description, with open items flagged rather than invented
 
 Replace the Starter-specific content under `docs/product/`.
 
@@ -61,9 +67,9 @@ Replace the Starter-specific content under `docs/product/`.
 - `goals.md`: measurable goals and success criteria
 - `scope.md`: current in-scope and out-of-scope boundaries
 
-Write known facts and explicitly mark open decisions. Do not invent requirements simply to make the documents look complete.
+Write known facts and explicitly mark open decisions. Do not invent requirements simply to make the documents look complete. When the maintainer's description leaves a goal, user, or scope boundary unstated, ask (human input required) rather than filling it with a plausible-sounding guess.
 
-### 3. Define the architecture
+### 3. Define the architecture — agent-fillable from the service description and repository inspection, with real open decisions flagged
 
 Replace or extend the content under `docs/architecture/` so it describes the target system rather than ADS.
 
@@ -77,7 +83,7 @@ At minimum, document:
 
 Keep `agent-context-model.md` and the repository documentation model when they remain applicable. Adapt them if the project has a justified, documented difference.
 
-### 4. Review the constitution
+### 4. Review the constitution (human input required)
 
 Review every file under `.ai/constitution/` with the project maintainers.
 
@@ -86,13 +92,15 @@ Review every file under `.ai/constitution/` with the project maintainers.
 - Put product requirements and architecture-specific rules in their dedicated documents, not in the constitution.
 - Plan deterministic enforcement for rules that must never be violated.
 
-### 5. Record accepted decisions
+An agent performing adoption may propose which principles look reusable, but the decision to keep, drop, or add one belongs to the maintainer.
+
+### 5. Record accepted decisions — agent-fillable mechanically; confirm the decision itself with the maintainer (human input required)
 
 Keep ADR-0001 if the target project adopts repository-first context. Update its date and deciders if necessary, but preserve the decision and consequences.
 
 Create additional ADRs only for decisions that are accepted and significant. Do not turn every preference or task note into an ADR.
 
-### 6. Reset working state
+### 6. Reset working state — agent-fillable from the service description and repository state
 
 Rewrite `docs/status/current-state.md` for the target project.
 
@@ -155,7 +163,7 @@ The adoption passes only when both agents provide consistent answers grounded in
 
 After the bootstrap test passes:
 
-1. Commit the adopted foundation as a reviewable baseline.
+1. Commit the adopted foundation as a reviewable baseline. If an agent performed the adoption, creating the Git repository or remote and the first push each need the maintainer's explicit confirmation beforehand — adoption itself does not imply consent to those actions.
 2. Start the first task with a concise task prompt.
 3. Let the agent recover durable context from the repository.
 4. Persist new accepted decisions in ADRs.
@@ -175,6 +183,7 @@ After the bootstrap test passes:
 - [ ] Starter-specific placeholders and metadata have been removed.
 - [ ] Fresh Codex and Claude Code sessions pass the bootstrap acceptance test.
 - [ ] The foundation has been committed before feature implementation begins.
+- [ ] If an agent performed the adoption, repository/remote creation and the first push were each explicitly confirmed by the maintainer, and no product, scope, or architecture content was invented without the maintainer's input.
 
 ## What V1 does not provide
 

@@ -1,6 +1,6 @@
 # Current State
 
-Last updated: 2026-09-09
+Last updated: 2026-09-09 (later same day)
 
 ## Current phase
 
@@ -20,14 +20,15 @@ V1 Foundation — establish and validate the minimum specification that allows t
 - Added a manual adoption guide for using the Starter in another project.
 - Ran the context bootstrap acceptance test in independent, fresh Codex-style and Claude Code-style sessions (2026-08-27). Both correctly answered all five acceptance questions with citations to repository paths and no fabricated content. The test surfaced one real routing gap: `docs/guides/` was never included in `AGENTS.md`, `CLAUDE.md`, or `docs/architecture/agent-context-model.md`'s bootstrap order, so a fresh session could not discover the adoption guide. Fixed by adding a `docs/guides/` step to all three.
 - Resolved the duplication the 2026-08-27 acceptance test flagged (2026-09-09): `AGENTS.md` and `CLAUDE.md` no longer restate the bootstrap order — both now point to `docs/architecture/agent-context-model.md`, the single source of truth for the reading sequence and conflict-handling rules. `docs/product/goals.md` ("Success criteria") is now the single canonical wording of the five acceptance-test questions; `docs/product/overview.md` and `agent-context-model.md` reference it instead of restating their own phrasing.
+- Documented agent-driven adoption in `docs/guides/using-the-starter.md` (2026-09-09): added a "Who performs the adoption" section and marked each step in "Adapt the repository in this order" as agent-fillable from the maintainer's natural-language service description versus requiring the maintainer's own judgment, so an agent can drive the full procedure conversationally and stop only where human input is actually required. Added an explicit rule that Git repository/remote creation and the first push need the maintainer's separate confirmation, and a matching checklist item. This came from a pre-adoption design discussion, not from a completed adoption, so it is unvalidated against a real run.
 
 ## In progress
 
-- None currently. See Next.
+- Applying the updated adoption guide (agent-driven mode) to a real in-progress service ("entrance service" for cleanbrain.me) as the first derived-project validation. Outcome and any friction found will be recorded here once the adoption is attempted.
 
 ## Next
 
-1. Validate the manual adoption guide against the first derived project.
+1. Validate the manual adoption guide, including the new agent-driven mode, against the first derived project (entrance service), and fix the guide if a step description or the agent-fillable/human-input split turns out to be wrong in practice.
 2. Decide the required fields and validation level for the V1 `PROJECT.yaml` schema.
 3. Define the minimum plan, verify, and review skill specifications only after repeated workflows have been observed.
 
