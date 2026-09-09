@@ -10,11 +10,15 @@ After adoption, the target repository should be self-describing. A fresh Codex o
 
 ### New project
 
-Start with an empty Git repository, copy the Starter foundation files into it, and make the repository project-specific before implementing application code.
+Start with an empty Git repository, copy the Starter foundation files into it, and make the repository project-specific before implementing application code. `PROJECT.yaml`'s `delivery` flags and `project.lifecycle`/`current_phase` will necessarily be set to a pre-implementation state (for example `implementation_present: false`, lifecycle `design`) during this pass, because the code does not exist yet. Record revisiting these fields once the first implementation lands as a `Next` item in `docs/status/current-state.md` during this same pass — do not treat the round trip as a later surprise.
 
 ### Existing project
 
 Add the foundation to the existing repository without replacing application code or established documentation. Map existing authoritative documents to the ADS responsibilities first. Prefer linking or moving one source of truth over creating a duplicate.
+
+### Restarting or discarding an adoption attempt
+
+An adoption attempt may need to be discarded and restarted — for example, the project is renamed, or an earlier attempt adopted the foundation incorrectly. Treat this as a fresh adoption in "New project" or "Existing project" mode, not as a separate procedure: discard the prior `PROJECT.yaml`, `.ai/constitution/`, `docs/product/`, `docs/architecture/`, and `docs/status/current-state.md` content and start the relevant steps below over, rather than patching the discarded attempt. Deleting a local project directory or an already-created remote repository are each irreversible, out-of-band actions — get the maintainer's explicit confirmation before either, the same way repository/remote creation requires it (see "Who performs the adoption").
 
 ### Who performs the adoption
 
@@ -40,6 +44,8 @@ docs/architecture/
 docs/decisions/
 docs/status/current-state.md
 ```
+
+Copy an agent adapter (`AGENTS.md` or `CLAUDE.md`) only for an agent that will actually appear in the target project's `supported_agents.initial` list — this is the same decision as "Keep only agents that the target project supports" in step 1, applied to which adapter files exist at all, not only to their content. Do not create an adapter file as an empty placeholder for an agent the project does not support, and do not ask the maintainer to choose between adapters as a separate step; derive the set directly from `supported_agents.initial` once it is set.
 
 Create or keep the target project's own `README.md`, Git history, remote, source tree, build configuration, and quality tooling. Do not copy `docs/guides/using-the-starter.md` unless the target repository will itself distribute the Starter. Add target-specific guides only when they have a real responsibility, and remove `context.guides` from `PROJECT.yaml` when the target has no guides directory.
 
@@ -141,7 +147,7 @@ Every remaining occurrence must be intentionally relevant. Also check dates, rep
 
 ## Run the bootstrap acceptance test
 
-Open clean sessions that do not have access to the setup conversation.
+Open clean sessions that do not have access to the setup conversation. "Clean" means isolated from the conversation that performed the adoption, not necessarily a session the maintainer opens by hand: an agent performing the adoption may satisfy this by delegating the test to a subagent (or equivalent isolated session) that shares no conversation history or memory with the adoption session and receives nothing beyond the entry adapter. What disqualifies a session is access to the setup conversation or its context, not who starts it.
 
 For Codex, use:
 
