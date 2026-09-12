@@ -10,6 +10,8 @@ Information that persists across sessions, including project purpose, scope, arc
 
 Information that changes with progress, including the current phase, recently completed work, next actions, and open decisions. Store it in `docs/status/current-state.md`.
 
+If the project also keeps per-feature design documents (for example a `specs/<feature>/` convention), each one's own status marker is working context too, not a one-time artifact: it must be updated the moment the feature it describes changes state (implemented, deployed, superseded), on the same discipline as `current-state.md`. A design document that still says "not yet implemented" after the feature has shipped is a stale working-context source, not a historical record — treat finding one as a defect to fix, the same as a stale `current-state.md`.
+
 ### Task context
 
 The current user request, relevant code, and temporary research findings. Load it only when needed. If it gains durable value, persist it in the appropriate permanent or working source.

@@ -173,7 +173,7 @@ After the bootstrap test passes:
 2. Start the first task with a concise task prompt.
 3. Let the agent recover durable context from the repository.
 4. Persist new accepted decisions in ADRs.
-5. Update current state whenever the next session needs a different picture of progress.
+5. Update current state whenever the next session needs a different picture of progress. This trigger does not wait for a natural session boundary: a single long session that ships several small, maintainer-directed changes back to back (common once a project is past its initial build-out and into iterative feature requests) can go many verified, deployed changes without ever pausing to update `current-state.md`, because no individual change feels like "the end of a phase." Treat each shipped and verified change as a candidate update, not only a session's last one — a `current-state.md` that is one day and twenty-plus commits behind the repository's actual history is a bootstrap-test failure waiting to happen, not a harmless lag. The same applies to any per-feature design document's own status marker (see `docs/architecture/agent-context-model.md`, "Working context").
 6. Add deterministic tests and quality gates as implementation begins.
 
 ## Adoption checklist
