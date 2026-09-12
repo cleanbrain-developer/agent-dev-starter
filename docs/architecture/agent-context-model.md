@@ -12,6 +12,8 @@ Information that changes with progress, including the current phase, recently co
 
 If the project also keeps per-feature design documents (for example a `specs/<feature>/` convention), each one's own status marker is working context too, not a one-time artifact: it must be updated the moment the feature it describes changes state (implemented, deployed, superseded), on the same discipline as `current-state.md`. A design document that still says "not yet implemented" after the feature has shipped is a stale working-context source, not a historical record — treat finding one as a defect to fix, the same as a stale `current-state.md`.
 
+When a status document records the same repeatable procedure for multiple parallel sibling entities (one per-service section in an infra README each documenting "CI deploy enabled," for example), silence about that step for one sibling is not neutral: a reader infers parity with the siblings where it was recorded done, not "not yet done." A real adoption found exactly this — two of five sibling services had no "CI deploy enabled" record at all, which read as "the same as the other three" until a real deploy attempt failed and direct inspection (`gh api .../actions/secrets`, `gh api .../actions/variables`, the server's own kubeconfig) showed the step had never been performed for either. State a repeated step's status explicitly (done, not yet done, or not applicable) for every sibling entry, not only the ones where it happened to be true — an absent record is a gap to flag, not evidence of completion by analogy.
+
 ### Task context
 
 The current user request, relevant code, and temporary research findings. Load it only when needed. If it gains durable value, persist it in the appropriate permanent or working source.
