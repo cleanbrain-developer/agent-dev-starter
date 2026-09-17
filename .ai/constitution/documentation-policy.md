@@ -33,4 +33,4 @@ If a code or structure change makes documentation false, update the documentatio
 
 ## Language
 
-Every Markdown document may have a Korean companion using the `.ko.md` suffix (see `ADR-0004`). English is canonical: agent bootstrap reads only the English file, and English governs if the two ever disagree. `PROJECT.yaml` has no Korean companion — it is structured data, not prose.
+Every Markdown document has a Korean companion using the `.ko.md` suffix — mandatory, not optional, for every ADS-adopted project (see `ADR-0004`, `ADR-0005`). English is canonical: agent bootstrap reads only the English file, and English governs if the two ever disagree. `PROJECT.yaml` has no Korean companion — it is structured data, not prose. When an English document's meaning changes, update its `.ko.md` companion in the same change — this is the same discipline as "Maintenance" above, not a separate, lower-priority task.

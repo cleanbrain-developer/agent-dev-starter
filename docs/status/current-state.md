@@ -15,6 +15,8 @@ V1 foundation validated — the specification, adoption procedure, and bootstrap
 - Accepted `ADR-0002` (permanently discard a template repository and CLI/initializer — the four adoptions' real cost was content adaptation, not file copying) and `ADR-0003` (skills are per-project, not a shared ADS library) (2026-09-17); updated `docs/product/scope.md` and `docs/product/goals.md` to reflect both, and wired `ADR-0003` into the adoption procedure as an optional step 9 with a matching checklist item and an optional `.ai/skills/` row in `repository-structure.md`.
 - Documented `PROJECT.yaml` field patterns observed in real use but previously unwritten (2026-09-17): `context` may declare project-specific optional paths (`specs:`, a cross-repository dependency status file, or `related_repositories:`), and `principles` may mix retained ADS core principles with project-specific ones as long as every project-specific principle has a real prose definition in that project's own `.ai/constitution/engineering-principles.md`.
 - Resolved the multi-repository-relationship and per-feature-spec-document open decisions with concrete optional conventions, based on patterns repeated across all four adoptions (2026-09-17) — see `docs/architecture/repository-structure.md`, "Optional context extensions."
+- Added `.ko.md` Korean companions for every document in this repository, and accepted `ADR-0004` (2026-09-17): English stays canonical and agent bootstrap reads only the English file; `PROJECT.yaml` has no companion since it is structured data, not prose.
+- Accepted `ADR-0005` (2026-09-17), strengthening `ADR-0004`: a `.ko.md` companion is now mandatory for every ADS-adopted project (not a per-project choice reviewed during constitution review), and must be updated in the same change whenever its English original's meaning changes — a stale companion is a defect, the same discipline as `documentation-policy.md`'s "Maintenance" rule. Wired into `agent-behavior.md`'s "Before completion" checklist, `documentation-policy.md`'s "Language" section, and `using-the-starter.md`'s "Files to adopt" and adoption checklist. Applies retroactively to all four adopted projects.
 
 ## In progress
 
@@ -25,6 +27,7 @@ V1 foundation validated — the specification, adoption procedure, and bootstrap
 1. Decide the required fields and validation level for a machine-checkable `PROJECT.yaml` schema — field-level meaning is documented in prose; mechanical validation is still undecided.
 2. Decide which documentation rules should be promoted first to tests, linting, or CI.
 3. Watch real adoptions for whether the newly-added `related_repositories` and spec-document conventions hold up, or need revision.
+4. Retrofit `.ko.md` companions into the four already-adopted projects per `ADR-0005` (in progress — see each project's own `current-state.md`).
 
 ## Open decisions
 

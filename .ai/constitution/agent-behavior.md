@@ -22,5 +22,6 @@ This document defines the shared behavior contract for coding agents working in 
 - Review the final change against the requirement, architecture, and documentation responsibilities.
 - Distinguish completed work, remaining risks, and open decisions.
 - Update `docs/status/current-state.md` when the next session needs to know about a state change.
+- If this change edited a document with a `.ko.md` companion, update the companion in the same change (see `ADR-0005`) — a stale translation is a defect, not a follow-up task.
 
 Claiming completion and demonstrating verification are different. Do not claim success without verification evidence.

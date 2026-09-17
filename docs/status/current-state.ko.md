@@ -17,6 +17,8 @@ V1 foundation 검증 완료 — 스펙, adoption 절차, bootstrap contract가 4
 - `ADR-0002`(template repository와 CLI/initializer를 영구 폐기 — 4번의 adoption에서 실제 비용은 파일 복사가 아니라 content adaptation이었음)와 `ADR-0003`(skill은 project별이며 공유 ADS 라이브러리가 아님)을 accept함(2026-09-17); `docs/product/scope.md`와 `docs/product/goals.md`를 이에 맞게 갱신하고, `ADR-0003`을 adoption 절차에 optional step 9와 대응하는 checklist 항목, `repository-structure.md`의 optional `.ai/skills/` 행으로 연결함.
 - 실제 사용에서 관찰됐지만 이전엔 문서화되지 않았던 `PROJECT.yaml` 필드 패턴을 문서화함(2026-09-17): `context`는 project 고유의 optional 경로(`specs:`, cross-repository dependency status 파일, `related_repositories:`)를 선언할 수 있고, `principles`는 유지되는 ADS core 원칙과 project 고유 원칙을 섞을 수 있다 — 단 project 고유 원칙마다 그 project 자신의 `.ai/constitution/engineering-principles.md`에 실제 prose 정의가 있어야 한다.
 - 4번의 adoption 전체에서 반복된 패턴에 근거하여 multi-repository-relationship과 per-feature-spec-document open decision을 구체적인 optional convention으로 해결함(2026-09-17) — `docs/architecture/repository-structure.md`의 "Optional context extensions" 참고.
+- 이 repository의 모든 문서에 `.ko.md` 한국어 companion을 추가하고 `ADR-0004`를 accept함(2026-09-17): 영어가 canonical로 남고 agent bootstrap은 영어 파일만 읽는다; `PROJECT.yaml`은 prose가 아니라 구조화된 데이터라 companion이 없다.
+- `ADR-0004`를 강화하는 `ADR-0005`를 accept함(2026-09-17): 이제 `.ko.md` companion은 모든 ADS-adopted project에서 필수이며(constitution 리뷰 중 검토되는 project별 선택이 아님), 영어 원본의 의미가 바뀔 때마다 같은 변경 안에서 갱신되어야 한다 — 오래된 companion은 `documentation-policy.md`의 "Maintenance" 규칙과 같은 수준의 결함이다. `agent-behavior.md`의 "Before completion" 체크리스트, `documentation-policy.md`의 "Language" 섹션, `using-the-starter.md`의 "Files to adopt"와 adoption checklist에 반영됨. 이미 채택된 4개 project 전부에 소급 적용됨.
 
 ## In progress
 
@@ -27,6 +29,7 @@ V1 foundation 검증 완료 — 스펙, adoption 절차, bootstrap contract가 4
 1. 기계적으로 검증 가능한 `PROJECT.yaml` 스키마에 필요한 필드와 검증 수준을 결정하기 — 필드 수준 의미는 이제 prose로 문서화되어 있지만, 기계적 검증은 아직 결정되지 않음.
 2. 어떤 문서화 규칙을 test, linting, CI로 먼저 승격할지 결정하기.
 3. 새로 추가된 `related_repositories`와 spec-document convention이 실제 adoption에서 잘 작동하는지, 수정이 필요한지 지켜보기.
+4. `ADR-0005`에 따라 이미 채택된 4개 project에 `.ko.md` companion을 소급 적용하기(진행 중 — 각 project 자신의 `current-state.md` 참고).
 
 ## Open decisions
 

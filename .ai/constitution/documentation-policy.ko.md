@@ -35,4 +35,4 @@
 
 ## 언어(Language)
 
-모든 Markdown 문서는 `.ko.md` suffix를 쓰는 한국어 companion을 가질 수 있습니다(`ADR-0004` 참고). 영어가 canonical입니다: agent bootstrap은 영어 파일만 읽고, 두 파일이 다를 경우 영어가 우선합니다. `PROJECT.yaml`은 한국어 companion이 없습니다 — 이건 prose가 아니라 구조화된 데이터이기 때문입니다.
+모든 Markdown 문서는 `.ko.md` suffix를 쓰는 한국어 companion을 가집니다 — 모든 ADS-adopted project에서 선택이 아니라 필수입니다(`ADR-0004`, `ADR-0005` 참고). 영어가 canonical입니다: agent bootstrap은 영어 파일만 읽고, 두 파일이 다를 경우 영어가 우선합니다. `PROJECT.yaml`은 한국어 companion이 없습니다 — 이건 prose가 아니라 구조화된 데이터이기 때문입니다. 영어 문서의 의미가 바뀌면 같은 변경 안에서 그 `.ko.md` companion을 갱신하세요 — 이건 위 "Maintenance"와 같은 규율이지, 별도의 우선순위 낮은 작업이 아닙니다.
