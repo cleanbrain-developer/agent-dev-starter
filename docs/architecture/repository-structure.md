@@ -9,6 +9,7 @@
 | `AGENTS.md` | Codex bootstrap adapter | Common policy source |
 | `CLAUDE.md` | Claude Code bootstrap adapter | Duplicate of `AGENTS.md` |
 | `.ai/constitution/` | Durable engineering and agent principles | Project feature requirements |
+| `.ai/skills/` (optional, per-project) | A repeatable workflow this specific project's maintainer described (see `ADR-0003`) | A shared library synced from ADS or copied from another adopted project |
 | `docs/product/` | Problem, users, goals, scope | Implementation instructions |
 | `docs/architecture/` | Structure, boundaries, context model | Decision history |
 | `docs/guides/` | Repeatable operational procedures | Product policy or architecture rationale |
@@ -39,7 +40,7 @@ Declare an optional field in `PROJECT.yaml`'s `context` block only when a file u
 
 ## Directory policy
 
-Add a directory only when a file has a real responsibility within it. Do not create empty structures for undefined skills, templates, presets, scripts, or source trees in V1.
+Add a directory only when a file has a real responsibility within it. Do not create empty structures for templates, presets, scripts, or source trees in V1. `.ai/skills/` is the one directory an adopting project may create for itself, and only once its maintainer has described a real, repeatable workflow for it (see `ADR-0003` and `docs/guides/using-the-starter.md`, step 9) — never as a speculative placeholder.
 
 ## Evolution rule
 

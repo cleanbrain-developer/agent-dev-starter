@@ -138,6 +138,10 @@ Review `AGENTS.md` and `CLAUDE.md`, but change them only for real tool-specific 
 
 Do not copy product requirements, architecture rules, or status into the adapters. Both adapters must lead to the same shared sources of truth.
 
+### 9. Define project skills — optional (human input required)
+
+Ask the maintainer whether this project has a repeatable workflow specific to it that is worth capturing as a Skill (see `ADR-0003`). Do not infer one from the product or architecture documents, and do not create `.ai/skills/` as an empty placeholder — only create it once the maintainer has described at least one real, repeatable workflow. If the maintainer has none, skip this step entirely; revisit it later if one comes up, rather than forcing it now. Skills defined this way belong to this project alone — do not copy a skill from one adopted project into another without the maintainer's explicit direction.
+
 ## Remove stale Starter context
 
 Before the first implementation task, search the target repository for Starter-specific terms such as:
@@ -196,6 +200,7 @@ After the bootstrap test passes:
 - [ ] Fresh Codex and Claude Code sessions pass the bootstrap acceptance test.
 - [ ] The foundation has been committed before feature implementation begins.
 - [ ] If an agent performed the adoption, repository/remote creation and the first push were each explicitly confirmed by the maintainer, and no product, scope, or architecture content was invented without the maintainer's input.
+- [ ] The maintainer was asked about project-specific skills; `.ai/skills/` exists only if the maintainer described a real workflow for it.
 
 ## What V1 does not provide
 
