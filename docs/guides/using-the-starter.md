@@ -95,6 +95,8 @@ At minimum, document:
 
 Keep `agent-context-model.md` and the repository documentation model when they remain applicable. Adapt them if the project has a justified, documented difference.
 
+If this project depends on, is depended on by, or shares infrastructure (a namespace, a deployment host) with another repository not fully controlled from here, add a related-repositories document and declare it in `PROJECT.yaml`'s `context` block — see `docs/architecture/repository-structure.md`, "Optional context extensions."
+
 ### 4. Review the constitution (human input required)
 
 Review every file under `.ai/constitution/` with the project maintainers.
