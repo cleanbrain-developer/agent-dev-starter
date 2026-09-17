@@ -23,6 +23,10 @@
 - A plugin ecosystem and distribution strategy
 - A complete validation schema for `PROJECT.yaml`
 
+## Permanently discarded, not deferred
+
+`ADR-0002` and `ADR-0003` promote four of the items above from "deferred for V1" to permanently out of scope, based on evidence from three real adoptions (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`): an executable CLI or initializer, automated project file generation, GitHub template distribution configuration, and a shared `.ai/skills/` library distributed from this repository. The manual, agent-driven procedure in `docs/guides/using-the-starter.md` remains the only supported adoption path. Skills remain a per-project extension point — an adopting project may define its own `.ai/skills/`, populated by asking its own maintainer — but ADS itself will not define, host, or synchronize one.
+
 ## Scope rule
 
 Consider out-of-scope items only enough to avoid blocking future extension. Do not add placeholder directories, speculative abstractions, or unused scripts in V1.

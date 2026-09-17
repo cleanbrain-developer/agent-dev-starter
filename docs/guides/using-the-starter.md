@@ -64,8 +64,10 @@ Edit `PROJECT.yaml` first.
 - Replace the project name, repository name, type, lifecycle, purpose, and current phase.
 - Keep only agents that the target project supports.
 - Review every listed principle; do not retain one that the project will not follow. (human input required — the maintainer decides which principles the team will actually follow)
+- `principles` may list both retained ADS core principles and principles specific to this project, as long as every project-specific principle has a real prose definition in this project's own `.ai/constitution/engineering-principles.md` — never a bare name in `PROJECT.yaml` with no definition anywhere.
+- `context` may add canonical paths beyond the core set (`human_entrypoint`, `agent_entrypoints`, `constitution`, `product`, `architecture`, `decisions`, `current_state`) when a path has a real, distinct responsibility this project needs — for example `specs:` for a dedicated feature-specification directory, or a status file tracking cross-repository dependencies (see `docs/architecture/repository-structure.md`, "Optional context extensions"). Drop `guides` and any other optional field the target project does not use; do not keep it as a stale placeholder.
 - Keep canonical context paths accurate if the target repository uses different locations.
-- Set delivery flags to the target project's actual state. (human input required — the agent cannot know what is actually implemented without being told or inspecting the repository)
+- Set delivery flags to the target project's actual state. (human input required — the agent cannot know what is actually implemented without being told or inspecting the repository) Revisit `delivery` and `lifecycle`/`current_phase` again once the first implementation actually lands, per the note in "New project" above — do not leave them at their pre-implementation values.
 
 Do not use `PROJECT.yaml` as a narrative design document. Detailed explanations belong under `docs/`.
 

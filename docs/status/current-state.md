@@ -1,6 +1,6 @@
 # Current State
 
-Last updated: 2026-09-16
+Last updated: 2026-09-17
 
 ## Current phase
 
@@ -27,6 +27,7 @@ V1 Foundation — establish and validate the minimum specification that allows t
 - Fed back a distinct real-world gap from rolling out a shared "today visitor count" feature across five `cleanbrain.me` sibling repositories plus a brand-new shared backend repo (2026-09-12). `cleanbrain-me-infra`'s README documented "CI ServiceAccount token"/"Enable CI deploys" as `Completed and verified` for three of five sibling services, with real command output cited, but said nothing at all — neither done nor not-done — for the other two. That silence was read as parity with the documented three until a real deploy attempt failed; direct inspection (`gh api .../actions/secrets`, `gh api .../actions/variables`, the deploy server's own kubeconfig) then showed neither had any CI deploy secret, variable, or kubeconfig context configured, and one of the two also turned out to use a differently-named ServiceAccount (`ci-deployer-relayhub-java`, not `ci-deployer`) because its namespace is shared with a second component. `docs/architecture/agent-context-model.md`'s "Working context" now states this as its own rule, distinct from staleness: silence about a repeated procedural step across parallel sibling entries is not neutral, it reads as completion by analogy, and must be stated explicitly per entry (done, not yet done, or not applicable) instead of left absent. The multi-repository-relationship open decision below was also updated with this session's two concrete new shapes (a shared satellite service with independent callers, and shared-namespace ServiceAccount naming).
 
 - Fed back friction from adopting into `kioti-crm-discount-enhance-demo` (2026-09-16) — the first adoption into a project well past initial build-out, with several feature rounds already shipped to production before the Starter was ever applied to it, rather than a from-the-start bootstrap. Two real gaps found, now fixed in `using-the-starter.md`: (1) "Files to adopt" gave no guidance for a target repository whose `AGENTS.md`/`CLAUDE.md` already existed for an unrelated reason — `create-next-app` had written an `AGENTS.md` with Next.js 16 tooling notices, and `CLAUDE.md` already used Claude Code's `@AGENTS.md` import to pull it in; naively following "copy an agent adapter" would have overwritten load-bearing, unrelated content. Fixed by adding a rule to keep pre-existing adapter content reachable (preserve the import, append the ADS routing section below it) rather than replace it. (2) "Existing project" mode said to map existing authoritative documents first but did not address a project with real, significant architectural decisions already made and implemented across earlier sessions, never recorded anywhere but code comments and conversation history — the adopting agent had to decide on its own whether and how to backfill ADRs for them. Fixed by making backfilling pre-existing significant decisions as ADRs (dated at adoption time, noted as documenting an existing decision) an explicit part of step 5, not an optional extra.
+- Reviewed maturity against four real adoptions (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`, `kioti-crm-discount-enhance-demo`) and resolved three long-open roadmap questions with evidence instead of speculation (2026-09-17). `ADR-0002` discards a GitHub template repository and a CLI/initializer permanently — the real, repeated cost across all four adoptions was writing project-specific `PROJECT.yaml`/product/architecture content, not copying files. `ADR-0003` settles skills as a per-project extension point, never a shared ADS library: the four adopted services are different enough in purpose that no reusable workflow has emerged, and inventing one now would violate the adoption guide's own "do not invent content" rule. `docs/product/scope.md` and `docs/product/goals.md` were updated to point at both ADRs. Separately, `docs/guides/using-the-starter.md` and `docs/architecture/repository-structure.md` ("Optional context extensions") now document two `PROJECT.yaml` field patterns observed in real use but previously unwritten: `context` may declare project-specific optional paths beyond the core set (`relayhub-java`'s `specs:` field, and a new documented pattern for a cross-repository dependency status file), and `principles` may mix retained ADS core principles with project-specific ones as long as every project-specific principle has a real prose definition in that project's own `.ai/constitution/engineering-principles.md` (already true in practice for `relayhub-java`, now written down as the rule).
 
 ## In progress
 
@@ -34,16 +35,13 @@ V1 Foundation — establish and validate the minimum specification that allows t
 
 ## Next
 
-1. Continue the `cleanbrain-me-entrance` adoption to completion (it is the first derived project, not yet finished) and watch for further gaps beyond the four already fixed.
-2. Decide the required fields and validation level for the V1 `PROJECT.yaml` schema.
-3. Define the minimum plan, verify, and review skill specifications only after repeated workflows have been observed.
+1. Decide the required fields and validation level for a machine-checkable `PROJECT.yaml` schema — the field-level rules for `context` and `principles` are now written down in prose (2026-09-17), but nothing validates them mechanically yet.
+2. Keep watching real adoptions for volume on the two still-open, evidence-gated decisions below (multi-repository relationships, per-feature spec-document convention) before designing a general answer to either.
+3. Decide which documentation rules should be promoted first to tests, linting, or CI.
 
 ## Open decisions
 
-- Whether `PROJECT.yaml` remains a simple manifest or receives a separate machine-validatable schema
-- The canonical location of shared skills and how they are distributed to Claude Code and Codex discovery paths
-- Whether a GitHub template repository becomes the primary V2 distribution method
-- The criteria for introducing a CLI, its implementation language, and command name
+- Whether `PROJECT.yaml` remains a simple manifest or receives a separate machine-validatable schema (field-level meaning is now documented in prose; only mechanical validation remains undecided)
 - Which documentation rules should be promoted first to tests, linting, or CI
 - How adapter compatibility should be verified as supported agents expand
 - How a project made of multiple related repositories (an application repo plus a sibling simulator/test-harness service plus a shared infra repo, `relayhub-java`'s actual shape as of 2026-09-12) should describe that relationship in repository-first context. V1 only specifies how one repository describes itself; nothing currently tells a fresh session opening one repo that sibling repos exist, what each owns, or where to find them, short of ad hoc prose in `current-state.md`. Worth deciding once more than one adopting project needs it, not before — but flagged now since the maintainer has said more services are coming on the same pattern. A second, different shape surfaced on 2026-09-12: a shared satellite service (`cleanbrain-me-visitor-counter`) built to be called by five otherwise-independent sibling repositories that own no code in it and don't depend on each other — not the app-plus-simulator shape above. The same gap also showed up one level lower than repo relationships: when a Kubernetes namespace is shared by two components with independently named CI identities (`relayhub-java`'s `api` and `relayhub-demo-systems`'s `demo-systems` Deployments), the actual ServiceAccount name (`ci-deployer-relayhub-java`, not the `ci-deployer` used where a namespace has only one component) was discoverable only by direct cluster inspection, not from any document — worth folding into whatever this decision eventually specifies, since naming assumptions that hold for a single-component namespace silently stop holding once a namespace is shared.
@@ -53,11 +51,11 @@ V1 Foundation — establish and validate the minimum specification that allows t
 
 - There is no application code, test suite, build system, CLI, or automation yet.
 - The initial design conversation was used only as bootstrap evidence and is not required context for future sessions.
-- Adoption is manual until a later distribution mechanism is accepted and implemented.
+- Adoption is manual, permanently — see `ADR-0002` — not a placeholder for a later distribution mechanism.
 
 ## V1 exit criteria
 
 - A new agent session accurately recovers the project purpose, principles, architecture, current state, and next work without an external link.
 - All durable evidence for that answer exists in the repository.
 - Shared design is not duplicated in agent adapters.
-- Another project can adopt the foundation by following the manual guide without relying on undocumented conversation context.
+- Another project can adopt the foundation by following the manual guide without relying on undocumented conversation context. (Satisfied four times over as of 2026-09-17: `cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`, `kioti-crm-discount-enhance-demo`.)

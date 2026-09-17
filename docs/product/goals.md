@@ -23,12 +23,9 @@ Every answer must be traceable to repository documentation and must not depend o
 
 ## Long-term direction
 
-The project may evolve from the validated specification in this order:
+Real adoption across three cleanbrain.me services (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`) validated the repository specification itself and settled two roadmap questions that were previously open:
 
-1. Repository specification
-2. Template repository
-3. Reusable workflow skills
-4. Interactive initializer or CLI
-5. Technology presets and plugin ecosystem
+- This repository stays a manually-referenced specification, permanently. A copy-and-adapt template repository and a CLI/initializer are discarded, not deferred — see `ADR-0002`. The friction observed in practice is per-project content adaptation (product, architecture, and principles specific to each service), which a copy mechanism does not reduce.
+- Reusable workflow skills are not a shared ADS concept — see `ADR-0003`. Each adopting project may define its own `.ai/skills/`, populated by the agent asking that project's maintainer directly what repeatable workflow needs detailing, never invented or copied from another project.
 
-This sequence is a direction, not a V1 implementation commitment.
+Technology presets and a plugin ecosystem remain unconsidered; no adoption evidence to date supports or rules them out, and neither is scheduled.
