@@ -30,3 +30,7 @@ Record choices with long-term impact, such as architecture, compatibility, and d
 ## Maintenance
 
 If a code or structure change makes documentation false, update the documentation in the same change. Remove stale guidance; use ADRs or version control when history must be preserved.
+
+## Language
+
+Every Markdown document may have a Korean companion using the `.ko.md` suffix (see `ADR-0004`). English is canonical: agent bootstrap reads only the English file, and English governs if the two ever disagree. `PROJECT.yaml` has no Korean companion — it is structured data, not prose.
