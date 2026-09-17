@@ -12,7 +12,7 @@ Project intent, architecture, and working state are easy to lose when they exist
 
 ## Use this starter
 
-V1 does not include a CLI or generator. Adopting the starter is currently a deliberate, manual process:
+There is no CLI or generator, permanently (`docs/decisions/ADR-0002-reference-only-distribution.md`). Adopting the starter is a deliberate, manual process:
 
 1. Copy the foundation files into a new or existing repository.
 2. Replace starter-specific identity, product, architecture, and status content.

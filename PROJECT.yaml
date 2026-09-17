@@ -33,14 +33,9 @@ current_phase:
   id: v1-validated
   status: active
   goal: >-
-    V1 foundation validated by four independent real adoptions
-    (cleanbrain-me-entrance, cleanbrain-me-developer, relayhub-java,
-    kioti-crm-discount-enhance-demo). Template repository and CLI
-    distribution permanently discarded (ADR-0002); skills scoped
-    per-project (ADR-0003). Remaining work refines specifics
-    (PROJECT.yaml schema, multi-repo relationships, per-feature spec
-    docs) surfaced by continued adoption, not new foundation-building.
-    See docs/status/current-state.md.
+    V1 foundation validated by real adoption; maintenance and
+    refinement now, not new foundation-building. See
+    docs/status/current-state.md.
 
 context:
   human_entrypoint: README.md

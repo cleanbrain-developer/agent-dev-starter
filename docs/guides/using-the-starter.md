@@ -1,6 +1,6 @@
 # Using the Starter
 
-This guide defines the V1 procedure for adopting Agent Development Starter in another project. The process is intentionally manual: the repository specification must be validated through real use before a template or CLI automates it.
+This guide defines the procedure for adopting Agent Development Starter in another project. The process is manual by design, permanently, not a stopgap awaiting a future template or CLI — see `ADR-0002`.
 
 ## Expected result
 
@@ -28,9 +28,9 @@ Either mode above can be carried out by a human working through the steps below 
 
 ## Acquire the foundation
 
-Until a template distribution method is implemented, download the source archive from the [ADS GitHub repository](https://github.com/cleanbrain-developer/agent-dev-starter) or clone it into a temporary directory. Copy only the foundation paths listed below into the target repository. Never copy the Starter's `.git/` directory.
+Download the source archive from the [ADS GitHub repository](https://github.com/cleanbrain-developer/agent-dev-starter) or clone it into a temporary directory — there is no other distribution mechanism, and none is planned (`ADR-0002`). Copy only the foundation paths listed below into the target repository. Never copy the Starter's `.git/` directory.
 
-There is intentionally no canonical copy command in V1. The first adoption should expose which files and transformations are stable enough to automate later.
+There is intentionally no canonical copy command. Copying by hand, or having an agent do it conversationally (see "Who performs the adoption"), is the permanent adoption path, not a placeholder for later automation.
 
 ## Files to adopt
 
@@ -206,4 +206,4 @@ After the bootstrap test passes:
 
 ## What V1 does not provide
 
-V1 does not generate files, validate `PROJECT.yaml`, synchronize skills, choose a technology stack, or configure build and CI systems. Do those tasks explicitly in the target repository and document significant choices. Automation should be introduced only after this manual procedure has been validated across real projects.
+ADS does not generate files, validate `PROJECT.yaml` mechanically, synchronize skills across projects, choose a technology stack, or configure build and CI systems. Do those tasks explicitly in the target repository and document significant choices. This is permanent, not conditional on further validation — four real adoptions have already validated the manual procedure, and `ADR-0002`/`ADR-0003` decided against automating it or centralizing skills regardless.
