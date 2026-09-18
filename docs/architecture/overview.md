@@ -44,4 +44,4 @@ Plan → Change → Verify → Review → Persist state
 
 ## Enforcement boundary
 
-Markdown guides judgment and procedure but does not enforce compliance. Rules that must never be violated should eventually be promoted to deterministic quality gates such as tests, linters, architecture checks, and CI. V1 does not implement that automation.
+Markdown guides judgment and procedure but does not enforce compliance. Rules that must never be violated should eventually be promoted to deterministic quality gates such as tests, linters, architecture checks, and CI. The one exception is the Korean-companion completeness rule (`ADR-0005`), which is mechanical enough to check today — see `scripts/check-ko-companions.sh` and `ADR-0007`. Everything else still relies on judgment, not automation.

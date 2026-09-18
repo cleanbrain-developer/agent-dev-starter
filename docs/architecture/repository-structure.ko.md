@@ -17,6 +17,7 @@
 | `docs/guides/` | 반복 가능한 운영 절차 | product 정책이나 architecture 근거 |
 | `docs/decisions/` | 중요한 결정과 근거 | 가변적인 current-state 체크리스트 |
 | `docs/status/current-state.md` | 현재 phase, 진행상황, 다음 작업 | 영구 정책이나 changelog |
+| `scripts/` (optional) | 기계적 규칙(예: `.ko.md` 완전성 — `ADR-0007`)을 위한 수동, non-CI 검증 tooling | build/CI pipeline |
 
 ## 의존 방향(Dependency direction)
 

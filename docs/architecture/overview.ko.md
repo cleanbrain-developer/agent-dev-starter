@@ -46,4 +46,4 @@ Plan → Change → Verify → Review → Persist state
 
 ## Enforcement boundary
 
-Markdown은 판단과 절차를 안내할 뿐 준수를 강제하지 않습니다. 절대 위반되어서는 안 되는 규칙은 언젠가 테스트, linter, architecture check, CI 같은 deterministic quality gate로 승격되어야 합니다. V1은 그 자동화를 구현하지 않습니다.
+Markdown은 판단과 절차를 안내할 뿐 준수를 강제하지 않습니다. 절대 위반되어서는 안 되는 규칙은 언젠가 테스트, linter, architecture check, CI 같은 deterministic quality gate로 승격되어야 합니다. 단 하나의 예외는 한국어 companion 완전성 규칙(`ADR-0005`)입니다 — 오늘 당장 검사할 수 있을 만큼 기계적입니다. `scripts/check-ko-companions.sh`와 `ADR-0007`을 참고하세요. 나머지는 여전히 자동화가 아니라 판단에 의존합니다.

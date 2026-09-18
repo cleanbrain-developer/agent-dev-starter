@@ -15,6 +15,7 @@
 | `docs/guides/` | Repeatable operational procedures | Product policy or architecture rationale |
 | `docs/decisions/` | Important decisions and rationale | Mutable current-state checklist |
 | `docs/status/current-state.md` | Current phase, progress, next work | Permanent policy or changelog |
+| `scripts/` (optional) | Manual, non-CI verification tooling for a mechanical rule (e.g. `.ko.md` completeness — `ADR-0007`) | A build/CI pipeline |
 
 ## Dependency direction
 

@@ -2,7 +2,7 @@
 
 # Current State
 
-Last updated: 2026-09-17
+Last updated: 2026-09-18
 
 ## Current phase
 
@@ -19,6 +19,8 @@ V1 foundation 검증 완료 — 스펙, adoption 절차, bootstrap contract가 4
 - 4번의 adoption 전체에서 반복된 패턴에 근거하여 multi-repository-relationship과 per-feature-spec-document open decision을 구체적인 optional convention으로 해결함(2026-09-17) — `docs/architecture/repository-structure.md`의 "Optional context extensions" 참고.
 - 이 repository의 모든 문서에 `.ko.md` 한국어 companion을 추가하고 `ADR-0004`를 accept함(2026-09-17): 영어가 canonical로 남고 agent bootstrap은 영어 파일만 읽는다; `PROJECT.yaml`은 prose가 아니라 구조화된 데이터라 companion이 없다.
 - `ADR-0004`를 강화하는 `ADR-0005`를 accept함(2026-09-17): 이제 `.ko.md` companion은 모든 ADS-adopted project에서 필수이며(constitution 리뷰 중 검토되는 project별 선택이 아님), 영어 원본의 의미가 바뀔 때마다 같은 변경 안에서 갱신되어야 한다 — 오래된 companion은 `documentation-policy.md`의 "Maintenance" 규칙과 같은 수준의 결함이다. `agent-behavior.md`의 "Before completion" 체크리스트, `documentation-policy.md`의 "Language" 섹션, `using-the-starter.md`의 "Files to adopt"와 adoption checklist에 반영됨. 이미 채택된 4개 project 전부에 소급 적용됨.
+- `cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java` 세 곳에 `.ko.md` companion을 소급 적용함(`kioti-crm-discount-enhance-demo`는 이번 세션에서 접근 가능한 디렉터리 밖이라 아직 보류)(2026-09-17/18).
+- 증거 기반 ADR로 남아있던 open decision 세 개를 모두 닫음(2026-09-18): `ADR-0006`은 `PROJECT.yaml`을 prose 문서로 유지하고 기계 스키마는 만들지 않기로 함 — 어떤 실제 adoption도 스키마가 잡아줄 만한 구조적 실패를 만든 적이 없음. `ADR-0007`은 (완전히 기계적인 유일한 규칙인) `.ko.md` 완전성 규칙을 `scripts/check-ko-companions.sh`를 통한 첫 deterministic check로 승격함 — 수동 실행이며 CI에 연결하지 않음, 수동 실행으로 충분하지 않다는 게 드러나지 않았기 때문. `ADR-0008`은 미래의 새 agent에 대한 adapter 호환성 검증에 답함: 새 메커니즘을 만들지 않고, Codex/Claude Code에서 이미 증명된 bootstrap acceptance test를 그 agent의 entry adapter로 실행하는 것으로 재사용함.
 
 ## In progress
 
@@ -26,16 +28,13 @@ V1 foundation 검증 완료 — 스펙, adoption 절차, bootstrap contract가 4
 
 ## Next
 
-1. 기계적으로 검증 가능한 `PROJECT.yaml` 스키마에 필요한 필드와 검증 수준을 결정하기 — 필드 수준 의미는 이제 prose로 문서화되어 있지만, 기계적 검증은 아직 결정되지 않음.
-2. 어떤 문서화 규칙을 test, linting, CI로 먼저 승격할지 결정하기.
-3. 새로 추가된 `related_repositories`와 spec-document convention이 실제 adoption에서 잘 작동하는지, 수정이 필요한지 지켜보기.
-4. `ADR-0005`에 따라 이미 채택된 4개 project에 `.ko.md` companion을 소급 적용하기(진행 중 — 각 project 자신의 `current-state.md` 참고).
+1. 새로 추가된 `related_repositories`와 spec-document convention이 실제 adoption에서 잘 작동하는지, 수정이 필요한지 지켜보기.
+2. `kioti-crm-discount-enhance-demo`에 다시 접근 가능해지면 `.ko.md` companion을 소급 적용하기.
+3. `ADR-0006`/`ADR-0007`이 전제한 "아직 증거 없음"이 미래의 adoption 경험과 어긋나면 재검토하기(실제 `PROJECT.yaml` 구조적 실패, 또는 수동 검사로 충분하지 않을 만큼 심하게 표류한 `.ko.md`).
 
 ## Open decisions
 
-- `PROJECT.yaml`이 단순한 manifest로 남을지, 별도의 기계 검증 가능한 스키마를 받을지 (필드 수준 의미는 prose로 문서화됨; 기계적 검증만 남아있음)
-- 어떤 문서화 규칙을 test, linting, CI로 먼저 승격할지
-- 지원 agent가 늘어날 때 adapter 호환성을 어떻게 검증할지
+현재 열려있는 open decision이 없습니다. 2026-08-27/09-09부터 열려있던 세 가지는 2026-09-18에 `ADR-0006`, `ADR-0007`, `ADR-0008`로 닫혔습니다.
 
 ## Known constraints
 

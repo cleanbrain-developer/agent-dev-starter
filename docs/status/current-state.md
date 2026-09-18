@@ -1,6 +1,6 @@
 # Current State
 
-Last updated: 2026-09-17
+Last updated: 2026-09-18
 
 ## Current phase
 
@@ -17,6 +17,8 @@ V1 foundation validated — the specification, adoption procedure, and bootstrap
 - Resolved the multi-repository-relationship and per-feature-spec-document open decisions with concrete optional conventions, based on patterns repeated across all four adoptions (2026-09-17) — see `docs/architecture/repository-structure.md`, "Optional context extensions."
 - Added `.ko.md` Korean companions for every document in this repository, and accepted `ADR-0004` (2026-09-17): English stays canonical and agent bootstrap reads only the English file; `PROJECT.yaml` has no companion since it is structured data, not prose.
 - Accepted `ADR-0005` (2026-09-17), strengthening `ADR-0004`: a `.ko.md` companion is now mandatory for every ADS-adopted project (not a per-project choice reviewed during constitution review), and must be updated in the same change whenever its English original's meaning changes — a stale companion is a defect, the same discipline as `documentation-policy.md`'s "Maintenance" rule. Wired into `agent-behavior.md`'s "Before completion" checklist, `documentation-policy.md`'s "Language" section, and `using-the-starter.md`'s "Files to adopt" and adoption checklist. Applies retroactively to all four adopted projects.
+- Retrofitted `.ko.md` companions into all four already-adopted projects (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`; `kioti-crm-discount-enhance-demo` still pending — outside this session's reachable directories) (2026-09-17/18).
+- Closed all three remaining open decisions with evidence-based ADRs (2026-09-18): `ADR-0006` keeps `PROJECT.yaml` prose-documented, no machine schema — no real adoption has ever produced a structural failure that a schema would have caught. `ADR-0007` promotes the `.ko.md` completeness rule (the one fully mechanical rule) to the first deterministic check, via `scripts/check-ko-companions.sh` — run by hand, not wired into CI, since no adoption has shown that manual running is insufficient. `ADR-0008` answers adapter-compatibility verification for a future new agent: pass the existing bootstrap acceptance test through that agent's own entry adapter, reusing the mechanism already proven for Codex and Claude Code rather than building a new one.
 
 ## In progress
 
@@ -24,16 +26,13 @@ V1 foundation validated — the specification, adoption procedure, and bootstrap
 
 ## Next
 
-1. Decide the required fields and validation level for a machine-checkable `PROJECT.yaml` schema — field-level meaning is documented in prose; mechanical validation is still undecided.
-2. Decide which documentation rules should be promoted first to tests, linting, or CI.
-3. Watch real adoptions for whether the newly-added `related_repositories` and spec-document conventions hold up, or need revision.
-4. Retrofit `.ko.md` companions into the four already-adopted projects per `ADR-0005` (in progress — see each project's own `current-state.md`).
+1. Watch real adoptions for whether the newly-added `related_repositories` and spec-document conventions hold up, or need revision.
+2. Retrofit `.ko.md` companions into `kioti-crm-discount-enhance-demo` once it is reachable again.
+3. Revisit `ADR-0006`/`ADR-0007` if a future adoption's experience contradicts their "no evidence yet" premise (a real `PROJECT.yaml` structural failure, or a `.ko.md` drifting badly enough that manual checking proves insufficient).
 
 ## Open decisions
 
-- Whether `PROJECT.yaml` remains a simple manifest or receives a separate machine-validatable schema (field-level meaning is documented in prose; only mechanical validation remains undecided)
-- Which documentation rules should be promoted first to tests, linting, or CI
-- How adapter compatibility should be verified as supported agents expand
+None currently open. The three that stood since 2026-08-27/09-09 were closed on 2026-09-18 by `ADR-0006`, `ADR-0007`, and `ADR-0008`.
 
 ## Known constraints
 
