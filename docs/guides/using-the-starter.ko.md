@@ -57,6 +57,8 @@ docs/status/current-state.md
 
 이 project가 채택하거나 작성하는 모든 Markdown 문서(agent 대상 문서 포함)에 대해 `.ko.md` 한국어 companion을 만드세요 — 이건 project별 선택이 아니라 필수입니다(`ADR-0004`, `ADR-0005` 참고). 영어가 canonical로 남고 agent bootstrap은 영어 파일만 읽습니다. 문서의 `.ko.md` companion이 존재하게 되면, 영어 원본의 의미가 바뀔 때마다 같은 변경 안에서 갱신하세요 — 오래된 companion은 받아들여질 지연이 아니라 결함입니다.
 
+이 project가 이미 CI pipeline을 가지고 있다면, `scripts/check-ko-companions.sh`도 복사하고 기존 `test` job 초반에 `--missing-only`로 실행하는 step을 추가해서, companion 누락 시 build를 실패시키세요(`ADR-0009` 참고). CI pipeline이 없다면 이건 건너뛰세요 — 이것 때문에 CI를 새로 만들 이유는 아닙니다.
+
 ## 이 순서로 repository를 조정하기
 
 아래 각 step은 maintainer의 자연어 project 설명으로부터 초안을 작성할 수 있는지, 아니면 maintainer 자신의 판단이 필요한지를 표시합니다. "Agent-fillable"은 maintainer가 이미 말한 것으로부터 첫 초안을 만들 수 있다는 뜻입니다 — 그래도 실제로 말한 것만 반영해야 하고, 절대 세부사항을 발명하지 않습니다. "(human input required)"는 agent가 추측하지 말고 멈춰서 물어봐야 한다는 뜻입니다.
@@ -208,6 +210,7 @@ Bootstrap test를 통과한 후:
 - [ ] agent가 adoption을 수행했다면, repository/remote 생성과 첫 push가 각각 maintainer에게 명시적으로 확인받았고, maintainer의 입력 없이 product/scope/architecture content가 발명되지 않았다.
 - [ ] maintainer에게 project 고유 skill에 대해 물어봤고, maintainer가 실제 workflow를 설명한 경우에만 `.ai/skills/`가 존재한다.
 - [ ] 채택되거나 작성된 모든 Markdown 문서가 `.ko.md` companion을 가지고 있고, 최근 영어 원본 변경과 어긋나 있는 companion이 없다.
+- [ ] 이 project에 CI pipeline이 있다면, `scripts/check-ko-companions.sh --missing-only`를 실행하고 companion 누락 시 실패한다(`ADR-0009`).
 
 ## ADS가 제공하지 않는 것
 

@@ -22,14 +22,16 @@ V1 foundation 검증 완료 — 스펙, adoption 절차, bootstrap contract가 4
 - `cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java` 세 곳에 `.ko.md` companion을 소급 적용함(`kioti-crm-discount-enhance-demo`는 이번 세션에서 접근 가능한 디렉터리 밖이라 아직 보류)(2026-09-17/18).
 - 증거 기반 ADR로 남아있던 open decision 세 개를 모두 닫음(2026-09-18): `ADR-0006`은 `PROJECT.yaml`을 prose 문서로 유지하고 기계 스키마는 만들지 않기로 함 — 어떤 실제 adoption도 스키마가 잡아줄 만한 구조적 실패를 만든 적이 없음. `ADR-0007`은 (완전히 기계적인 유일한 규칙인) `.ko.md` 완전성 규칙을 `scripts/check-ko-companions.sh`를 통한 첫 deterministic check로 승격함 — 수동 실행이며 CI에 연결하지 않음, 수동 실행으로 충분하지 않다는 게 드러나지 않았기 때문. `ADR-0008`은 미래의 새 agent에 대한 adapter 호환성 검증에 답함: 새 메커니즘을 만들지 않고, Codex/Claude Code에서 이미 증명된 bootstrap acceptance test를 그 agent의 entry adapter로 실행하는 것으로 재사용함.
 
+- `ADR-0007`을 수정하는 `ADR-0009`를 accept함(2026-09-18), maintainer의 명시적 선호에 따라: 이미 CI pipeline을 가진 모든 ADS-adopted project는 기본적으로 기존 `test` job에서 `scripts/check-ko-companions.sh --missing-only`를 실행하고, companion 누락 시 build를 실패시켜야 한다. fresh CI checkout이 mtime을 리셋해서 staleness heuristic이 거기서 무의미해지기 때문에, 스크립트 자체에 `--missing-only` flag를 추가함. `using-the-starter.md`의 "Files to adopt"와 adoption checklist에 반영됨. CI를 가진 이미 채택된 3개 project(`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`)에 적용하는 작업이 진행 중.
+
 ## In progress
 
-- 현재 없음. Next를 참고하세요.
+- CI를 가진 이미 채택된 3개 project에 `ADR-0009`의 CI step을 소급 적용하는 중(`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`).
 
 ## Next
 
 1. 새로 추가된 `related_repositories`와 spec-document convention이 실제 adoption에서 잘 작동하는지, 수정이 필요한지 지켜보기.
-2. `kioti-crm-discount-enhance-demo`에 다시 접근 가능해지면 `.ko.md` companion을 소급 적용하기.
+2. `kioti-crm-discount-enhance-demo`에 다시 접근 가능해지면 `.ko.md` companion과 `ADR-0009`의 CI step을 소급 적용하기.
 3. `ADR-0006`/`ADR-0007`이 전제한 "아직 증거 없음"이 미래의 adoption 경험과 어긋나면 재검토하기(실제 `PROJECT.yaml` 구조적 실패, 또는 수동 검사로 충분하지 않을 만큼 심하게 표류한 `.ko.md`).
 
 ## Open decisions

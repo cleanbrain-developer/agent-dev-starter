@@ -55,6 +55,8 @@ Create or keep the target project's own `README.md`, Git history, remote, source
 
 Create a `.ko.md` Korean companion for every Markdown document this project adopts or authors, including agent-facing ones — this is mandatory, not a per-project choice (see `ADR-0004`, `ADR-0005`). English stays canonical and agent bootstrap reads only the English file. Once a document's `.ko.md` companion exists, update it in the same change whenever the English original's meaning changes — a stale companion is a defect, not an accepted lag.
 
+If this project already has a CI pipeline, also copy `scripts/check-ko-companions.sh` and add a step running it with `--missing-only` early in the existing `test` job, failing the build on a missing companion (see `ADR-0009`). If this project has no CI pipeline, skip this — it is not a reason to add one.
+
 ## Adapt the repository in this order
 
 Each step below notes whether it can be drafted from the maintainer's natural-language description of the target project, or whether it needs the maintainer's own judgment. "Agent-fillable" means a first draft can be produced from what the maintainer has already said; it still must reflect only what was actually said, never invented detail. "(human input required)" means the agent must stop and ask rather than guess.
@@ -206,6 +208,7 @@ After the bootstrap test passes:
 - [ ] If an agent performed the adoption, repository/remote creation and the first push were each explicitly confirmed by the maintainer, and no product, scope, or architecture content was invented without the maintainer's input.
 - [ ] The maintainer was asked about project-specific skills; `.ai/skills/` exists only if the maintainer described a real workflow for it.
 - [ ] Every adopted or authored Markdown document has a `.ko.md` companion, and no companion is out of sync with a recent change to its English original.
+- [ ] If this project has a CI pipeline, it runs `scripts/check-ko-companions.sh --missing-only` and fails on a missing companion (`ADR-0009`).
 
 ## What V1 does not provide
 

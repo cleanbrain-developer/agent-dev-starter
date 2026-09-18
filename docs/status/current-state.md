@@ -20,14 +20,16 @@ V1 foundation validated — the specification, adoption procedure, and bootstrap
 - Retrofitted `.ko.md` companions into all four already-adopted projects (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`; `kioti-crm-discount-enhance-demo` still pending — outside this session's reachable directories) (2026-09-17/18).
 - Closed all three remaining open decisions with evidence-based ADRs (2026-09-18): `ADR-0006` keeps `PROJECT.yaml` prose-documented, no machine schema — no real adoption has ever produced a structural failure that a schema would have caught. `ADR-0007` promotes the `.ko.md` completeness rule (the one fully mechanical rule) to the first deterministic check, via `scripts/check-ko-companions.sh` — run by hand, not wired into CI, since no adoption has shown that manual running is insufficient. `ADR-0008` answers adapter-compatibility verification for a future new agent: pass the existing bootstrap acceptance test through that agent's own entry adapter, reusing the mechanism already proven for Codex and Claude Code rather than building a new one.
 
+- Accepted `ADR-0009` (2026-09-18), amending `ADR-0007` on the maintainer's explicit preference: any ADS-adopted project that already has a CI pipeline should run `scripts/check-ko-companions.sh --missing-only` in its existing `test` job by default, failing the build on a missing companion. Added the `--missing-only` flag to the script itself, since a fresh CI checkout resets mtimes and makes the staleness heuristic meaningless there. Wired into `using-the-starter.md`'s "Files to adopt" and adoption checklist. Applying this to the three already-adopted projects with CI (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`) is in progress.
+
 ## In progress
 
-- None currently. See Next.
+- Retrofitting `ADR-0009`'s CI step into the three already-adopted projects that have a pipeline (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`).
 
 ## Next
 
 1. Watch real adoptions for whether the newly-added `related_repositories` and spec-document conventions hold up, or need revision.
-2. Retrofit `.ko.md` companions into `kioti-crm-discount-enhance-demo` once it is reachable again.
+2. Retrofit `.ko.md` companions and the `ADR-0009` CI step into `kioti-crm-discount-enhance-demo` once it is reachable again.
 3. Revisit `ADR-0006`/`ADR-0007` if a future adoption's experience contradicts their "no evidence yet" premise (a real `PROJECT.yaml` structural failure, or a `.ko.md` drifting badly enough that manual checking proves insufficient).
 
 ## Open decisions
