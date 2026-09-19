@@ -29,10 +29,11 @@ Last updated: 2026-09-20
 - Ran `specify init --here --integration claude` then `specify integration install codex --force` in this repository. It preserved the existing, hand-authored `.specify/memory/constitution.md` unmodified (verified: the CLI's manifest tracking recognizes an already-customized file and does not overwrite it) and generated the real `.specify/templates/`, `.specify/scripts/`, `.claude/skills/speckit-*/SKILL.md`, and `.agents/skills/speckit-*/SKILL.md` — resolving the "unvalidated guidance" gap `ADR-0010` and the old Next item 2 recorded. `using-the-starter.md`'s Spec Kit installation steps now match real, observed CLI behavior, not just Spec Kit's documentation.
 - Accepted `ADR-0014`: excluded vendored Spec Kit assets (`.specify/templates|scripts|workflows|integrations`, any `.claude/skills/speckit-*`/`.agents/skills/speckit-*`) from the `.ko.md` mandate — translating upstream boilerplate that gets replaced wholesale on every version bump has no reader benefit, the same reasoning already accepted for `node_modules`. `.specify/memory/constitution.md` and any project-specific skill remain mandatory. Updated `scripts/check-ko-companions.sh` accordingly; verified 0 missing after the real install.
 - Retrofitted the same real installation into `cleanbrain-me-entrance`, `cleanbrain-me-developer`, and `relayhub-java` (which also had a pre-existing, non-Spec-Kit `specs/001`–`006` tree — migrating that into Spec Kit's own `specs/<NNN-feature>/` structure is separate from installing the CLI itself; see Next).
+- Retrofitted the full V2 migration and the real Spec Kit install into `kioti-crm-discount-enhance-demo` in two commits (structural migration, then the bilingual `.ko.md` rollout) — `docs/decisions/ADR-0001`–`ADR-0007` were left untouched as historical records per that project's own ADR-immutability norm, matching the pattern used for `cleanbrain-me-entrance`/`cleanbrain-me-developer`/`relayhub-java`. All four originally-adopted projects are now on V2 with a real, pinned Spec Kit CLI install.
 
 ## In progress
 
-- Retrofitting the V2 migration (including the now-real Spec Kit install) into `kioti-crm-discount-enhance-demo`.
+None currently.
 
 ## Next
 
@@ -55,5 +56,5 @@ None currently open.
 - A new agent session, starting only from `AGENTS.md`, accurately recovers the project purpose, principles, architecture, current state, and next work without an external link. Met.
 - All durable evidence for that answer exists in the repository. Met.
 - Shared design is not duplicated across agent adapters — there is exactly one. Met (`ADR-0011`).
-- Another project can adopt the foundation by following the manual guide without relying on undocumented conversation context. Met four times over under V1; V2's guidance (including the real Spec Kit install) has now been run for real in this repository and three of the four adopted projects.
+- Another project can adopt the foundation by following the manual guide without relying on undocumented conversation context. Met four times over under V1; V2's guidance (including the real Spec Kit install) has now been run for real in this repository and all four adopted projects.
 - No ADS mechanism exists where an open standard (`AGENTS.md`, GitHub Spec Kit, Agent Skills) already solves the same problem. Met as of this migration; recheck whenever a new mechanism is proposed.

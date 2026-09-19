@@ -31,10 +31,11 @@ Last updated: 2026-09-20
 - 이 repository에서 `specify init --here --integration claude`를 실행한 뒤 `specify integration install codex --force`를 실행함. 기존의, 손으로 작성한 `.specify/memory/constitution.md`를 그대로 보존했고(검증됨: CLI의 manifest tracking이 이미 커스터마이즈된 파일을 인식하고 덮어쓰지 않음), 실제 `.specify/templates/`, `.specify/scripts/`, `.claude/skills/speckit-*/SKILL.md`, `.agents/skills/speckit-*/SKILL.md`를 생성함 — `ADR-0010`과 예전 Next 항목 2가 기록한 "검증 안 된 guidance" gap을 해결함. `using-the-starter.md`의 Spec Kit 설치 step은 이제 Spec Kit의 문서만이 아니라 실제로 관찰된 CLI 동작과 일치합니다.
 - `ADR-0014`를 accept함: vendor된 Spec Kit asset(`.specify/templates|scripts|workflows|integrations`, 어떤 `.claude/skills/speckit-*`/`.agents/skills/speckit-*`든)을 `.ko.md` 의무에서 제외함 — 버전이 bump될 때마다 통째로 교체되는 upstream boilerplate를 번역하는 건 독자에게 이득이 없습니다, `node_modules`에 대해 이미 받아들여진 것과 같은 논리입니다. `.specify/memory/constitution.md`와 project 고유 skill은 여전히 필수입니다. `scripts/check-ko-companions.sh`를 그에 맞게 갱신함; 실제 설치 후 0 missing 확인됨.
 - 같은 실제 설치를 `cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`에 소급 적용함(`relayhub-java`는 Spec Kit 없이 만들어진 기존 `specs/001`–`006` tree도 가지고 있음 — 그걸 Spec Kit 자신의 `specs/<NNN-feature>/` 구조로 옮기는 건 CLI 자체를 설치하는 것과는 별개입니다; Next 참고).
+- `kioti-crm-discount-enhance-demo`에 전체 V2 migration과 실제 Spec Kit 설치를 두 커밋(구조적 migration, 그다음 이중언어 `.ko.md` rollout)으로 소급 적용함 — `docs/decisions/ADR-0001`부터 `ADR-0007`까지는 그 project 자신의 ADR-immutability norm에 따라 historical record로 그대로 두었으며, 이는 `cleanbrain-me-entrance`/`cleanbrain-me-developer`/`relayhub-java`에서 쓴 것과 같은 패턴입니다. 원래 채택했던 4개 project 모두 이제 V2이며 실제 pinned Spec Kit CLI가 설치되어 있습니다.
 
 ## In progress
 
-- `kioti-crm-discount-enhance-demo`에 V2 migration(이제 실제인 Spec Kit 설치 포함)을 소급 적용하는 중.
+현재 진행 중인 항목이 없습니다.
 
 ## Next
 
@@ -57,5 +58,5 @@ Last updated: 2026-09-20
 - `AGENTS.md`만으로 시작하는 새 agent session이 외부 링크 없이 project 목적, 원칙, architecture, 현재 상태, 다음 작업을 정확히 복원한다. 충족됨.
 - 그 답에 대한 모든 durable한 증거가 repository에 존재한다. 충족됨.
 - 공유 design이 여러 agent adapter에 중복되지 않는다 — 정확히 하나만 있다. 충족됨(`ADR-0011`).
-- 다른 project가 문서화되지 않은 대화 context에 의존하지 않고 수동 가이드를 따라 foundation을 채택할 수 있다. V1 기준으로 4번 충족됨; V2의 guidance(실제 Spec Kit 설치 포함)는 이제 이 repository와 채택된 4개 project 중 3개에서 실제로 실행되었습니다.
+- 다른 project가 문서화되지 않은 대화 context에 의존하지 않고 수동 가이드를 따라 foundation을 채택할 수 있다. V1 기준으로 4번 충족됨; V2의 guidance(실제 Spec Kit 설치 포함)는 이제 이 repository와 채택된 4개 project 전부에서 실제로 실행되었습니다.
 - 열린 표준(`AGENTS.md`, GitHub Spec Kit, Agent Skills)이 이미 같은 문제를 해결하는 ADS 메커니즘이 없다. 이번 migration 기준으로 충족됨; 새 메커니즘이 제안될 때마다 다시 확인하세요.
