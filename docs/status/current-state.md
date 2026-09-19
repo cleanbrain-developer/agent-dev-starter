@@ -22,17 +22,23 @@ Last updated: 2026-09-20
 - `ADR-0013`: merged `.ai/constitution/engineering-principles.md` into `.specify/memory/constitution.md` (GitHub Spec Kit's own constitution role) and `.ai/constitution/agent-behavior.md` directly into `AGENTS.md`. Only `.ai/constitution/documentation-policy.md` remains, since no open standard owns document ownership or the language policy.
 - Rewrote `docs/guides/using-the-starter.md`, `docs/architecture/{overview,repository-structure,agent-context-model}.md`, `docs/product/{overview,goals,scope}.md`, `PROJECT.yaml`, and `README.md` to reflect the above — adoption now installs the pinned Spec Kit CLI and generates real skill files instead of ADS providing its own equivalents.
 - Compacted this file's V1 history (documented above) per `documentation-policy.md`'s "Status hygiene" rule, since it had grown into exactly the changelog that rule forbids.
+- Retrofitted the V2 migration into `cleanbrain-me-entrance`, `cleanbrain-me-developer`, and `relayhub-java`.
+
+**Real Spec Kit installation (2026-09-20, later same day):**
+- Installed a real Python 3.12 + `uv` toolchain (via `winget` and `pip`) and `specify-cli==1.0.8` — the exact version `ADR-0010` pinned. This closes the gap that ADR recorded: ADS can now actually run the CLI it requires adopting projects to use.
+- Ran `specify init --here --integration claude` then `specify integration install codex --force` in this repository. It preserved the existing, hand-authored `.specify/memory/constitution.md` unmodified (verified: the CLI's manifest tracking recognizes an already-customized file and does not overwrite it) and generated the real `.specify/templates/`, `.specify/scripts/`, `.claude/skills/speckit-*/SKILL.md`, and `.agents/skills/speckit-*/SKILL.md` — resolving the "unvalidated guidance" gap `ADR-0010` and the old Next item 2 recorded. `using-the-starter.md`'s Spec Kit installation steps now match real, observed CLI behavior, not just Spec Kit's documentation.
+- Accepted `ADR-0014`: excluded vendored Spec Kit assets (`.specify/templates|scripts|workflows|integrations`, any `.claude/skills/speckit-*`/`.agents/skills/speckit-*`) from the `.ko.md` mandate — translating upstream boilerplate that gets replaced wholesale on every version bump has no reader benefit, the same reasoning already accepted for `node_modules`. `.specify/memory/constitution.md` and any project-specific skill remain mandatory. Updated `scripts/check-ko-companions.sh` accordingly; verified 0 missing after the real install.
+- Retrofitted the same real installation into `cleanbrain-me-entrance`, `cleanbrain-me-developer`, and `relayhub-java` (which also had a pre-existing, non-Spec-Kit `specs/001`–`006` tree — migrating that into Spec Kit's own `specs/<NNN-feature>/` structure is separate from installing the CLI itself; see Next).
 
 ## In progress
 
-- Retrofitting the V2 migration into the three already-adopted projects reachable in this session (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`): remove `CLAUDE.md`, merge the constitution files, install the pinned Spec Kit CLI, move any project-specific skill to the correct path, and remove now-superseded V1-era documents.
+- Retrofitting the V2 migration (including the now-real Spec Kit install) into `kioti-crm-discount-enhance-demo`.
 
 ## Next
 
-1. Retrofit the V2 migration into `kioti-crm-discount-enhance-demo` once it is reachable again (same as the other three).
-2. Validate this guidance against a real `specify init` run — this session had no working Python/`uv` toolchain, so `using-the-starter.md`'s Spec Kit installation steps were written from Spec Kit's own documentation and raw template source, not from having run the CLI (`ADR-0010`). The first real adoption under V2 should confirm the guidance matches actual CLI output.
-3. Watch real adoptions for whether the newly-added `related_repositories` and spec-document conventions (now Spec Kit's own `specs/`) hold up, or need revision.
-4. Revisit `ADR-0006`/`ADR-0007` if a future adoption's experience contradicts their "no evidence yet" premise (a real `PROJECT.yaml` structural failure, or a `.ko.md` drifting badly enough that manual checking proves insufficient).
+1. Decide whether and how to migrate `relayhub-java`'s pre-existing `specs/001`–`006` tree into Spec Kit's own `specs/<NNN-feature>/` structure now that the real CLI is available, or leave it as a documented, intentional exception.
+2. Watch real adoptions for whether the newly-added `related_repositories` and spec-document conventions (now Spec Kit's own `specs/`) hold up, or need revision.
+3. Revisit `ADR-0006`/`ADR-0007` if a future adoption's experience contradicts their "no evidence yet" premise (a real `PROJECT.yaml` structural failure, or a `.ko.md` drifting badly enough that manual checking proves insufficient).
 
 ## Open decisions
 
@@ -40,15 +46,14 @@ None currently open.
 
 ## Known constraints
 
-- There is no ADS-specific application code, test suite, build system, or CLI, and none is planned (`ADR-0002`). GitHub Spec Kit's own CLI is a required external dependency for adopting projects, pinned via `ADR-0010`.
+- There is no ADS-specific application code, test suite, build system, or CLI, and none is planned (`ADR-0002`). GitHub Spec Kit's own CLI is a required external dependency for adopting projects, pinned via `ADR-0010`, and is now actually installed and verified in this environment.
 - The initial design conversation was used only as bootstrap evidence and is not required context for future sessions.
 - Adoption is manual, permanently — see `ADR-0002`.
-- This session could not run the actual Spec Kit CLI to verify its rendered output (see `ADR-0010` and Next item 2) — a real gap, not a hypothetical one, until the first real V2 adoption confirms it.
 
 ## Exit criteria
 
 - A new agent session, starting only from `AGENTS.md`, accurately recovers the project purpose, principles, architecture, current state, and next work without an external link. Met.
 - All durable evidence for that answer exists in the repository. Met.
 - Shared design is not duplicated across agent adapters — there is exactly one. Met (`ADR-0011`).
-- Another project can adopt the foundation by following the manual guide without relying on undocumented conversation context. Met four times over under V1; V2's guidance is unvalidated by a real adoption yet (see Next item 2).
+- Another project can adopt the foundation by following the manual guide without relying on undocumented conversation context. Met four times over under V1; V2's guidance (including the real Spec Kit install) has now been run for real in this repository and three of the four adopted projects.
 - No ADS mechanism exists where an open standard (`AGENTS.md`, GitHub Spec Kit, Agent Skills) already solves the same problem. Met as of this migration; recheck whenever a new mechanism is proposed.
