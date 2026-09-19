@@ -2,54 +2,55 @@
 
 # Current State
 
-Last updated: 2026-09-18
+Last updated: 2026-09-20
 
 ## Current phase
 
-V1 foundation 검증 완료 — 스펙, adoption 절차, bootstrap contract가 4번의 독립적인 실제 adoption을 통해 입증되었습니다. 남은 작업은 계속되는 adoption에서 드러난 세부사항을 다듬는 것이며, 새로운 foundation을 추가하는 게 아닙니다.
+**V2: 열린 표준으로 migration 완료.** ADS는 더 이상 spec/plan/tasks convention을 재구현하거나 비표준 agent-adapter/skill 경로를 지어내지 않습니다 — 이제 `AGENTS.md`, GitHub Spec Kit, Agent Skills 위에 얹힌 opinionated profile입니다(`ADR-0010`부터 `ADR-0013`까지). V1의 foundation(repository-first context, `PROJECT.yaml`, ADR discipline, `current-state.md`, 필수 이중언어 문서화)은 보존되었습니다; V1이 표준을 먼저 확인하지 않고 재발명했던 부분들만 교체되었습니다.
 
 ## Completed
 
-- V1 foundation을 확립함: repository-first context와 agent-agnostic core(`ADR-0001`), 책임별로 분리된 디렉터리 구조, 초기 지원 agent로서 Codex와 Claude Code, 수동 adoption 가이드(`docs/guides/using-the-starter.md`).
-- fresh한 Codex-style, Claude Code-style session에서 bootstrap acceptance test를 실행함(2026-08-27)하고 이후 fix를 통해 다시 검증함; `AGENTS.md`, `CLAUDE.md`, `agent-context-model.md`, `overview.md`, `goals.md`에 걸쳐 bootstrap 읽기 순서와 다섯 가지 acceptance-test question을 중복 제거함(2026-09-09).
-- Agent-driven adoption을 문서화하고 검증함(2026-09-09): agent가 maintainer의 자연어 설명으로부터 전체 절차를 대화형으로 수행할 수 있고, 가이드가 human input required로 표시한 곳에서만 질문한다; git repo/remote 생성과 첫 push는 항상 별도 확인이 필요하다.
-- 4번의 실제 외부 adoption을 완료함 — `cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`, `kioti-crm-discount-enhance-demo` — 각각 production에 배포되었거나 활발히 개발 중임. 각각 실제 gap을 드러냈고, 이제 가이드와 constitution에 고쳐짐: 구현 전/후 `delivery`/`lifecycle` 왕복; "clean"한 bootstrap-test session의 기준; adapter 파일 생성을 `supported_agents.initial`에 연결; 잘못된 adoption의 재시작/폐기 경로; stale한 `current-state.md`나 per-feature spec 상태를 결함으로 취급하고, 갱신 트리거를 "session 경계"에서 "배포되고 검증된 변경"으로 변경; green한 자동화 검사와 실제 실행 중인 시스템에 대한 직접 검증을 구분(`relayhub-java`에서 실제 production 결함 3건을 잡음); sibling repo에 걸친 반복 단계에 대한 침묵이 유추에 의한 거짓 완료로 읽히는 문제; 기존의 무관한 adapter content를 덮어쓰지 않고 보존; "Existing project" adoption 중 문서화되지 않은 기존 결정을 ADR로 소급 기록. 각각의 전체 서사는 git history에 있으며 여기서 반복하지 않습니다.
-- `ADR-0002`(template repository와 CLI/initializer를 영구 폐기 — 4번의 adoption에서 실제 비용은 파일 복사가 아니라 content adaptation이었음)와 `ADR-0003`(skill은 project별이며 공유 ADS 라이브러리가 아님)을 accept함(2026-09-17); `docs/product/scope.md`와 `docs/product/goals.md`를 이에 맞게 갱신하고, `ADR-0003`을 adoption 절차에 optional step 9와 대응하는 checklist 항목, `repository-structure.md`의 optional `.ai/skills/` 행으로 연결함.
-- 실제 사용에서 관찰됐지만 이전엔 문서화되지 않았던 `PROJECT.yaml` 필드 패턴을 문서화함(2026-09-17): `context`는 project 고유의 optional 경로(`specs:`, cross-repository dependency status 파일, `related_repositories:`)를 선언할 수 있고, `principles`는 유지되는 ADS core 원칙과 project 고유 원칙을 섞을 수 있다 — 단 project 고유 원칙마다 그 project 자신의 `.ai/constitution/engineering-principles.md`에 실제 prose 정의가 있어야 한다.
-- 4번의 adoption 전체에서 반복된 패턴에 근거하여 multi-repository-relationship과 per-feature-spec-document open decision을 구체적인 optional convention으로 해결함(2026-09-17) — `docs/architecture/repository-structure.md`의 "Optional context extensions" 참고.
-- 이 repository의 모든 문서에 `.ko.md` 한국어 companion을 추가하고 `ADR-0004`를 accept함(2026-09-17): 영어가 canonical로 남고 agent bootstrap은 영어 파일만 읽는다; `PROJECT.yaml`은 prose가 아니라 구조화된 데이터라 companion이 없다.
-- `ADR-0004`를 강화하는 `ADR-0005`를 accept함(2026-09-17): 이제 `.ko.md` companion은 모든 ADS-adopted project에서 필수이며(constitution 리뷰 중 검토되는 project별 선택이 아님), 영어 원본의 의미가 바뀔 때마다 같은 변경 안에서 갱신되어야 한다 — 오래된 companion은 `documentation-policy.md`의 "Maintenance" 규칙과 같은 수준의 결함이다. `agent-behavior.md`의 "Before completion" 체크리스트, `documentation-policy.md`의 "Language" 섹션, `using-the-starter.md`의 "Files to adopt"와 adoption checklist에 반영됨. 이미 채택된 4개 project 전부에 소급 적용됨.
-- `cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java` 세 곳에 `.ko.md` companion을 소급 적용함(`kioti-crm-discount-enhance-demo`는 이번 세션에서 접근 가능한 디렉터리 밖이라 아직 보류)(2026-09-17/18).
-- 증거 기반 ADR로 남아있던 open decision 세 개를 모두 닫음(2026-09-18): `ADR-0006`은 `PROJECT.yaml`을 prose 문서로 유지하고 기계 스키마는 만들지 않기로 함 — 어떤 실제 adoption도 스키마가 잡아줄 만한 구조적 실패를 만든 적이 없음. `ADR-0007`은 (완전히 기계적인 유일한 규칙인) `.ko.md` 완전성 규칙을 `scripts/check-ko-companions.sh`를 통한 첫 deterministic check로 승격함 — 수동 실행이며 CI에 연결하지 않음, 수동 실행으로 충분하지 않다는 게 드러나지 않았기 때문. `ADR-0008`은 미래의 새 agent에 대한 adapter 호환성 검증에 답함: 새 메커니즘을 만들지 않고, Codex/Claude Code에서 이미 증명된 bootstrap acceptance test를 그 agent의 entry adapter로 실행하는 것으로 재사용함.
+**V1(2026-08-26 – 2026-09-18), 압축됨 — 전체 서사는 git history에 있으며 여기서 반복하지 않습니다:**
+- Repository-first context(`ADR-0001`), 책임별로 분리된 구조, agent-driven adoption 절차를 확립함.
+- 4번의 실제 adoption(`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`, `kioti-crm-discount-enhance-demo`)에 걸쳐 foundation을 검증함, 각각 실제 gap을 가이드와 constitution에 피드백함.
+- template repository, ADS 전용 CLI, 공유 skill 라이브러리를 adoption 증거에 근거해 영구 폐기함(`ADR-0002`, `ADR-0003`).
+- 모든 문서를 필수적으로 이중언어화함(영어 canonical, `.ko.md` companion, 매 변경마다 cascade, CI에서 기본으로 검사) — `ADR-0004`, `ADR-0005`, `ADR-0009`.
+- 무기한 열어두지 않고 증거 기반 ADR로 남아있던 모든 open decision을 닫음(`ADR-0006`, `ADR-0007`, `ADR-0008`).
 
-- `ADR-0007`을 수정하는 `ADR-0009`를 accept함(2026-09-18), maintainer의 명시적 선호에 따라: 이미 CI pipeline을 가진 모든 ADS-adopted project는 기본적으로 기존 `test` job에서 `scripts/check-ko-companions.sh --missing-only`를 실행하고, companion 누락 시 build를 실패시켜야 한다. fresh CI checkout이 mtime을 리셋해서 staleness heuristic이 거기서 무의미해지기 때문에, 스크립트 자체에 `--missing-only` flag를 추가함. `using-the-starter.md`의 "Files to adopt"와 adoption checklist에 반영됨.
-- CI를 가진 이미 채택된 3개 project(`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`) 전부에 `ADR-0009`의 CI step을 소급 적용함 — 각각 `.ko.md` companion이 누락되면 `test` job이 실패하도록 바뀜(2026-09-18).
+**V2(2026-09-20) — standards-alignment migration:**
+- `ADR-0010`: `specify-cli==1.0.8`(GitHub Spec Kit)을 모든 adoption에 필요한 버전으로 pin함, ADS가 이 세션에서 검증할 수 없는 렌더링된 skill 파일을 손으로 vendor하는 대신(이 세션에는 CLI를 실제로 실행할 동작하는 Python/`uv` toolchain이 없었음).
+- `ADR-0011`: `CLAUDE.md`를 제거함. `AGENTS.md`가 이제 모든 지원 agent를 위한 유일한 adapter입니다, Claude Code가 `AGENTS.md`를 네이티브로 읽기 시작했기 때문에(v2.1.277, 2026-09-18) 두 adapter를 동기화할 마지막 이유가 사라졌습니다.
+- `ADR-0012`: `ADR-0003`의 지어낸 `.ai/skills/` 경로를 실제 agent가 discover하는 `.claude/skills/`와 `.agents/skills/`로 정정함 — 어떤 agent tool도 실제로 옛 경로를 읽은 적이 없습니다.
+- `ADR-0013`: `.ai/constitution/engineering-principles.md`를 `.specify/memory/constitution.md`(GitHub Spec Kit 자신의 constitution 역할)로, `.ai/constitution/agent-behavior.md`를 `AGENTS.md`로 직접 병합함. `.ai/constitution/documentation-policy.md`만 남습니다, 문서 소유권이나 언어 정책은 어떤 열린 표준도 소유하지 않기 때문입니다.
+- `docs/guides/using-the-starter.md`, `docs/architecture/{overview,repository-structure,agent-context-model}.md`, `docs/product/{overview,goals,scope}.md`, `PROJECT.yaml`, `README.md`를 위 내용에 맞게 다시 작성함 — adoption이 이제 pinned Spec Kit CLI를 설치하고 실제 skill 파일을 생성합니다, ADS가 자기 버전을 제공하는 대신.
+- `documentation-policy.md`의 "Status hygiene" 규칙에 따라 이 파일의 V1 이력을 압축함(위에 문서화됨), 그 규칙이 금지하는 정확히 그런 changelog가 되어버렸기 때문입니다.
 
 ## In progress
 
-- 현재 없음. Next를 참고하세요.
+- 이번 세션에서 접근 가능한 이미 채택된 3개 project(`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`)에 V2 migration을 소급 적용하는 중: `CLAUDE.md` 제거, constitution 파일 병합, pinned Spec Kit CLI 설치, project 고유 skill을 올바른 경로로 이동, 이제 대체된 V1 시절 문서 제거.
 
 ## Next
 
-1. 새로 추가된 `related_repositories`와 spec-document convention이 실제 adoption에서 잘 작동하는지, 수정이 필요한지 지켜보기.
-2. `kioti-crm-discount-enhance-demo`에 다시 접근 가능해지면 `.ko.md` companion과 `ADR-0009`의 CI step을 소급 적용하기.
-3. `ADR-0006`/`ADR-0007`이 전제한 "아직 증거 없음"이 미래의 adoption 경험과 어긋나면 재검토하기(실제 `PROJECT.yaml` 구조적 실패, 또는 수동 검사로 충분하지 않을 만큼 심하게 표류한 `.ko.md`).
+1. 다시 접근 가능해지면 `kioti-crm-discount-enhance-demo`에도 V2 migration을 소급 적용하기(다른 세 곳과 동일하게).
+2. 실제 `specify init` 실행으로 이 guidance를 검증하기 — 이 세션에는 동작하는 Python/`uv` toolchain이 없어서, `using-the-starter.md`의 Spec Kit 설치 step은 실제로 CLI를 실행해본 게 아니라 Spec Kit 자신의 문서와 원본 template 소스로부터 작성됐습니다(`ADR-0010`). V2 아래의 첫 실제 adoption이 이 guidance가 실제 CLI 결과와 맞는지 확인해야 합니다.
+3. 새로 추가된 `related_repositories`와 spec-document convention(이제 Spec Kit 자신의 `specs/`)이 실제 adoption에서 잘 작동하는지, 수정이 필요한지 지켜보기.
+4. `ADR-0006`/`ADR-0007`이 전제한 "아직 증거 없음"이 미래의 adoption 경험과 어긋나면 재검토하기(실제 `PROJECT.yaml` 구조적 실패, 또는 수동 검사로 충분하지 않을 만큼 심하게 표류한 `.ko.md`).
 
 ## Open decisions
 
-현재 열려있는 open decision이 없습니다. 2026-08-27/09-09부터 열려있던 세 가지는 2026-09-18에 `ADR-0006`, `ADR-0007`, `ADR-0008`로 닫혔습니다.
+현재 열려있는 open decision이 없습니다.
 
 ## Known constraints
 
-- 애플리케이션 코드, test suite, build system, CLI, 자동화가 없으며, 계획도 없습니다(`ADR-0002`).
+- ADS 전용 애플리케이션 코드, test suite, build system, CLI가 없으며, 계획도 없습니다(`ADR-0002`). GitHub Spec Kit 자신의 CLI는 adopting project에게 필요한 외부 의존성이며, `ADR-0010`으로 pin되어 있습니다.
 - 초기 design 대화는 bootstrap 증거로만 사용됐고 향후 session에 필요한 context가 아닙니다.
 - Adoption은 영구적으로 수동입니다 — `ADR-0002` 참고.
+- 이 세션은 실제 Spec Kit CLI를 실행해서 그 렌더링 결과를 검증할 수 없었습니다(`ADR-0010`과 Next 항목 2 참고) — 이건 가상의 문제가 아니라 실제 gap입니다, 첫 실제 V2 adoption이 이를 확인하기 전까지는요.
 
-## V1 exit criteria
+## Exit criteria
 
-- 새 agent session이 외부 링크 없이 project 목적, 원칙, architecture, 현재 상태, 다음 작업을 정확히 복원한다. 충족됨.
+- `AGENTS.md`만으로 시작하는 새 agent session이 외부 링크 없이 project 목적, 원칙, architecture, 현재 상태, 다음 작업을 정확히 복원한다. 충족됨.
 - 그 답에 대한 모든 durable한 증거가 repository에 존재한다. 충족됨.
-- 공유 design이 agent adapter에 중복되지 않는다. 충족됨.
-- 다른 project가 문서화되지 않은 대화 context에 의존하지 않고 수동 가이드를 따라 foundation을 채택할 수 있다. 2026-09-17 기준 4번 충족됨: `cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`, `kioti-crm-discount-enhance-demo`.
-
-네 가지 기준이 모두 충족되었습니다; V1은 검증되었습니다. `PROJECT.yaml`의 `current_phase`는 활발한 foundation 구축이 아니라 유지보수 태세를 반영합니다 — 남은 작업은 위 세 가지 `Next` 항목이며, V1을 닫기 위해 필요한 게 아니라 계속되는 adoption을 통해 발견된 것입니다.
+- 공유 design이 여러 agent adapter에 중복되지 않는다 — 정확히 하나만 있다. 충족됨(`ADR-0011`).
+- 다른 project가 문서화되지 않은 대화 context에 의존하지 않고 수동 가이드를 따라 foundation을 채택할 수 있다. V1 기준으로 4번 충족됨; V2의 guidance는 아직 실제 adoption으로 검증되지 않았습니다(Next 항목 2 참고).
+- 열린 표준(`AGENTS.md`, GitHub Spec Kit, Agent Skills)이 이미 같은 문제를 해결하는 ADS 메커니즘이 없다. 이번 migration 기준으로 충족됨; 새 메커니즘이 제안될 때마다 다시 확인하세요.

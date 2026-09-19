@@ -1,6 +1,6 @@
-# Engineering Principles
+# Constitution
 
-This document defines engineering principles that should outlive a technology choice or an individual feature.
+This is the project's constitution in the sense GitHub Spec Kit uses the term: durable principles every spec, plan, and implementation is evaluated against. It replaces the old `.ai/constitution/engineering-principles.md` (`ADR-0013`) — this is now the one place these principles live.
 
 ## Evidence before change
 
@@ -22,8 +22,16 @@ A green automated check is evidence about the code, not evidence about the runni
 
 ## Agent-agnostic core
 
-Do not bind product intent, architecture, decisions, or engineering principles to an agent-specific instruction file. An agent adapter may contain only the differences required to route its agent to shared sources.
+Do not bind product intent, architecture, decisions, or these principles to an agent-specific instruction file. `AGENTS.md` may contain only the routing and behavioral contract needed for any agent to find and follow these shared sources.
 
 ## Separated boundaries
 
 Future implementations should separate domain concerns from external systems and tool integrations. Each adopting project must define its concrete technical boundaries in architecture documents and ADRs.
+
+## Standards over reinvention
+
+Prefer an established open standard or convention (AGENTS.md, GitHub Spec Kit, Agent Skills) over building an equivalent mechanism from scratch. Before adding a project-specific process, decision format, or file convention, check whether an open standard already solves it — see `ADR-0002`, `ADR-0006`, `ADR-0010`, `ADR-0011`, `ADR-0012` for concrete instances of this principle being applied.
+
+## Project-specific principles
+
+A project may add its own principles below this line, each with a real prose definition here — never a bare name only in `PROJECT.yaml`.

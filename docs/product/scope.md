@@ -1,32 +1,32 @@
 # Scope
 
-## V1 in scope
+## In scope
 
-- `PROJECT.yaml` for project identity and the current phase
-- Thin entry adapters for Codex and Claude Code
-- Shared engineering, agent behavior, and documentation principles
+- `PROJECT.yaml` for project identity, current phase, and pinned standard versions (`ADR-0010`)
+- `AGENTS.md` as the sole entry adapter for every supported agent (`ADR-0011`)
+- GitHub Spec Kit for the spec/plan/tasks/clarify/analyze/implement/converge workflow, at the pinned CLI version
+- Agent Skills at the paths agents actually discover (`.claude/skills/`, `.agents/skills/` — `ADR-0012`), for GitHub Spec Kit's own `speckit-*` skills and any project-specific skill a maintainer has asked for
+- Durable engineering principles in `.specify/memory/constitution.md`; document ownership and language policy in `.ai/constitution/documentation-policy.md` (`ADR-0013`)
 - Separate product, architecture, guide, decision, and status responsibilities
 - An initial ADR that preserves the repository-first decision
-- A status document that restores current working context
+- A status document that restores current project-wide working context (a scope Spec Kit deliberately leaves to teams)
+- Mandatory, cascading `.ko.md` Korean companions for every document, English canonical (`ADR-0004`/`ADR-0005`), with a default CI check for projects that already have a pipeline (`ADR-0009`)
 - Manual context bootstrap acceptance criteria
-- A manual procedure for adopting the Starter in another repository
+- An agent-driven adoption procedure for using the Starter in another repository
 
-## V1 out of scope
+## Permanently out of scope
 
-- An executable CLI or initializer
-- Automated project file generation
-- GitHub template distribution configuration
-- `.ai/skills/` and agent-specific skill synchronization
-- Technology or framework presets
+- An ADS-specific CLI, initializer, or file generator (`ADR-0002`) — GitHub Spec Kit's own CLI fills this role instead
+- GitHub template distribution configuration (`ADR-0002`)
+- A shared skill library defined, hosted, or synchronized by ADS itself (`ADR-0003`) — skills stay per-project
+- A machine-validatable `PROJECT.yaml` schema (`ADR-0006`)
 - Application source code
-- Build, test, lint, or CI pipelines
+- CI pipelines built by ADS itself for adopting projects, beyond the one check described above (`ADR-0007`/`ADR-0009`)
 - A plugin ecosystem and distribution strategy
-- A complete validation schema for `PROJECT.yaml`
+- ADS reimplementing anything an open standard already solves (`ADR-0002`, `ADR-0006`, `ADR-0010`, `ADR-0011`, `ADR-0012`) — the recurring test for any proposed new ADS mechanism is whether AGENTS.md, GitHub Spec Kit, or Agent Skills already covers it
 
-## Permanently discarded, not deferred
-
-`ADR-0002` and `ADR-0003` promote four of the items above from "deferred for V1" to permanently out of scope, based on evidence from four real adoptions (`cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`, `kioti-crm-discount-enhance-demo`): an executable CLI or initializer, automated project file generation, GitHub template distribution configuration, and a shared `.ai/skills/` library distributed from this repository. The manual, agent-driven procedure in `docs/guides/using-the-starter.md` remains the only supported adoption path. Skills remain a per-project extension point — an adopting project may define its own `.ai/skills/`, populated by asking its own maintainer — but ADS itself will not define, host, or synchronize one.
+These are permanent decisions, not items deferred for a future version — each is backed by an ADR reached from real adoption evidence or, for the standards-alignment items, from checking what the open standards already provide before building an equivalent.
 
 ## Scope rule
 
-Consider out-of-scope items only enough to avoid blocking future extension. Do not add placeholder directories, speculative abstractions, or unused scripts in V1.
+Consider out-of-scope items only enough to avoid blocking future extension. Do not add placeholder directories, speculative abstractions, or unused scripts.

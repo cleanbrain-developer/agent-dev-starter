@@ -1,8 +1,8 @@
-> 이 문서는 [`engineering-principles.md`](engineering-principles.md)의 한국어 번역본입니다. 영어 원본이 canonical이며, 충돌 시 영어 원본이 우선합니다 (`ADR-0004`).
+> 이 문서는 [`constitution.md`](constitution.md)의 한국어 번역본입니다. 영어 원본이 canonical이며, 충돌 시 영어 원본이 우선합니다 (`ADR-0004`).
 
-# Engineering Principles
+# Constitution
 
-이 문서는 기술 선택이나 개별 기능보다 오래 지속되어야 할 engineering 원칙을 정의합니다.
+이건 GitHub Spec Kit이 쓰는 의미에서의 이 프로젝트의 constitution입니다: 모든 spec, plan, 구현이 평가되는 기준이 되는 durable한 원칙입니다. 옛 `.ai/constitution/engineering-principles.md`를 대체합니다(`ADR-0013`) — 이제 이 원칙들이 사는 유일한 곳입니다.
 
 ## 변경 전 증거 확인 (Evidence before change)
 
@@ -24,8 +24,16 @@ green한 자동화된 검사는 코드에 대한 증거일 뿐, 실행 중인 �
 
 ## Agent-agnostic core
 
-Product 의도, 아키텍처, 결정, engineering 원칙을 특정 agent 전용 instruction 파일에 묶지 마세요. agent adapter는 자신의 agent를 공유 소스로 라우팅하는 데 필요한 차이만 포함할 수 있습니다.
+Product 의도, 아키텍처, 결정, 이 원칙들을 agent 전용 instruction 파일에 묶지 마세요. `AGENTS.md`는 어떤 agent든 이 공유 소스를 찾고 따르는 데 필요한 routing과 행동 계약만 담을 수 있습니다.
 
 ## 분리된 경계 (Separated boundaries)
 
 향후 구현은 domain 관심사를 외부 시스템 및 tool integration과 분리해야 합니다. 각 adopting project는 자신의 구체적인 기술 경계를 architecture 문서와 ADR에 정의해야 합니다.
+
+## 재발명보다 표준
+
+프로젝트 고유의 process, decision 형식, 파일 convention을 새로 만들기 전에, 열린 표준(AGENTS.md, GitHub Spec Kit, Agent Skills)이 이미 그걸 해결하는지 확인하세요. 이 원칙이 실제로 적용된 구체적 사례는 `ADR-0002`, `ADR-0006`, `ADR-0010`, `ADR-0011`, `ADR-0012`를 참고하세요.
+
+## Project-specific 원칙
+
+프로젝트는 이 줄 아래에 자기만의 원칙을 추가할 수 있습니다, 각각 여기 실제 prose 정의와 함께 — `PROJECT.yaml`에 이름만 있는 건 절대 안 됩니다.

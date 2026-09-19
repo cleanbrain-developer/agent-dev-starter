@@ -10,14 +10,17 @@
 
 ## 단일 책임(Single responsibility)
 
-- Project identity와 구조화된 phase: `PROJECT.yaml`
-- Product 목적, 목표, scope: `docs/product/`
-- 구조와 context model: `docs/architecture/`
+- Project identity, 구조화된 phase, pinned standard 버전: `PROJECT.yaml`
+- 유일한 agent entry point이자 행동 계약: `AGENTS.md`(`ADR-0011`)
+- Durable한 engineering 원칙: `.specify/memory/constitution.md`(`ADR-0013`)
+- 문서 소유권과 언어 정책: `.ai/constitution/documentation-policy.md` — 어떤 열린 표준도 소유하지 않는 유일한 정책 영역
+- Project 레벨 product 목적, 목표, scope: `docs/product/`
+- 영속적인 구조와 context model: `docs/architecture/`
+- Feature 레벨 요구사항, 기술적 접근, 실행 계획: `specs/<NNN-feature>/{spec,plan,tasks}.md`(GitHub Spec Kit)
+- 재사용 가능한 agent 절차: `.claude/skills/`, `.agents/skills/`(`ADR-0012`)
 - 운영 adoption 절차: `docs/guides/`
 - 중요한 결정과 근거: `docs/decisions/`
-- 현재 진행상황, 다음 작업, open decision: `docs/status/current-state.md`
-- Durable한 development 원칙: `.ai/constitution/`
-- Tool별 bootstrap 차이: agent adapter
+- 현재 project 전체 진행상황, 다음 작업, open decision: `docs/status/current-state.md`
 
 같은 정책을 여러 파일에 중복 서술하지 마세요. 요약이 유용하다면 authoritative 경로로 링크하세요.
 

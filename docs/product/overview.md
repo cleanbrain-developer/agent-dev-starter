@@ -2,7 +2,7 @@
 
 ## Product
 
-Agent Development Starter (ADS) is a starter specification for durable context, working conventions, and quality boundaries in repositories developed with AI coding agents.
+Agent Development Starter (ADS) is an opinionated profile built on top of open standards and established agent-development conventions — not a new AI development framework. Structurally: the **AGENTS.md** open standard, **GitHub Spec Kit**, and **Agent Skills** are the standards layer; `PROJECT.yaml`, `docs/status/current-state.md`, ADR discipline, architecture conventions, the context-loading model, and the bilingual documentation policy are ADS's own opinion on top of them (`ADR-0010` through `ADR-0013`). The value ADS provides is not a new standard — it is a consistent combination of existing ones, a bootstrap procedure, a context-recovery model, and a document lifecycle, so that repository-first context (`ADR-0001`) survives across sessions and agents.
 
 ## Problem
 
@@ -16,8 +16,8 @@ Standardize the repository instead of standardizing every prompt. A task prompt 
 
 The initial user is a developer who uses Codex and Claude Code together or interchangeably in VS Code. Other coding agents should be able to reuse the shared core over time.
 
-## V1 experience
+## Core experience
 
-After being directed to its entry adapter, a new agent session must be able to answer the five acceptance questions defined in `docs/product/goals.md` ("Success criteria") without previous conversation history, with every answer traceable to repository documentation.
+After being directed to `AGENTS.md`, a new agent session must be able to answer the five acceptance questions defined in `docs/product/goals.md` ("Success criteria") without previous conversation history, with every answer traceable to repository documentation, and continue implementation without the maintainer having to separately ask for a spec, a plan, tasks, an ADR, or a Korean translation — the agent's own workflow absorbs those steps (see `docs/guides/using-the-starter.md`'s artifact lifecycle).
 
-Only after this foundation is validated should the project add a template repository, reusable skills, a CLI, technology presets, or deterministic quality gates.
+Two questions gate every future addition to this project: does this capability already exist in an open standard (`AGENTS.md`, GitHub Spec Kit, Agent Skills) — if so, use that instead of building it; and can a fresh agent session, reading only the English canonical documents, recover this project's full state and next work within five minutes.

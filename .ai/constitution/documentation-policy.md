@@ -8,14 +8,17 @@ Conversations and external links may be discovery or bootstrap inputs, but they 
 
 ## Single responsibility
 
-- Project identity and structured phase: `PROJECT.yaml`
-- Product purpose, goals, and scope: `docs/product/`
-- Structure and context model: `docs/architecture/`
+- Project identity, structured phase, and pinned standard versions: `PROJECT.yaml`
+- The sole agent entry point and behavioral contract: `AGENTS.md` (`ADR-0011`)
+- Durable engineering principles: `.specify/memory/constitution.md` (`ADR-0013`)
+- Document ownership and language policy: `.ai/constitution/documentation-policy.md` — the one policy area no open standard owns
+- Project-level product purpose, goals, and scope: `docs/product/`
+- Persistent structure and context model: `docs/architecture/`
+- Feature-level requirements, technical approach, and execution plan: `specs/<NNN-feature>/{spec,plan,tasks}.md` (GitHub Spec Kit)
+- Reusable agent procedures: `.claude/skills/`, `.agents/skills/` (`ADR-0012`)
 - Operational adoption procedures: `docs/guides/`
 - Significant decisions and rationale: `docs/decisions/`
-- Current progress, next work, and open decisions: `docs/status/current-state.md`
-- Durable development principles: `.ai/constitution/`
-- Tool-specific bootstrap differences: agent adapters
+- Current project-wide progress, next work, and open decisions: `docs/status/current-state.md`
 
 Do not duplicate the same policy across files. When a summary is useful, link to the authoritative path.
 
