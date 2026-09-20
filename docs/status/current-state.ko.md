@@ -32,6 +32,7 @@ Last updated: 2026-09-20
 - `ADR-0014`를 accept함: vendor된 Spec Kit asset(`.specify/templates|scripts|workflows|integrations`, 어떤 `.claude/skills/speckit-*`/`.agents/skills/speckit-*`든)을 `.ko.md` 의무에서 제외함 — 버전이 bump될 때마다 통째로 교체되는 upstream boilerplate를 번역하는 건 독자에게 이득이 없습니다, `node_modules`에 대해 이미 받아들여진 것과 같은 논리입니다. `.specify/memory/constitution.md`와 project 고유 skill은 여전히 필수입니다. `scripts/check-ko-companions.sh`를 그에 맞게 갱신함; 실제 설치 후 0 missing 확인됨.
 - 같은 실제 설치를 `cleanbrain-me-entrance`, `cleanbrain-me-developer`, `relayhub-java`에 소급 적용함(`relayhub-java`는 Spec Kit 없이 만들어진 기존 `specs/001`–`006` tree도 가지고 있음 — 그걸 Spec Kit 자신의 `specs/<NNN-feature>/` 구조로 옮기는 건 CLI 자체를 설치하는 것과는 별개입니다; Next 참고).
 - `kioti-crm-discount-enhance-demo`에 전체 V2 migration과 실제 Spec Kit 설치를 두 커밋(구조적 migration, 그다음 이중언어 `.ko.md` rollout)으로 소급 적용함 — `docs/decisions/ADR-0001`부터 `ADR-0007`까지는 그 project 자신의 ADR-immutability norm에 따라 historical record로 그대로 두었으며, 이는 `cleanbrain-me-entrance`/`cleanbrain-me-developer`/`relayhub-java`에서 쓴 것과 같은 패턴입니다. 원래 채택했던 4개 project 모두 이제 V2이며 실제 pinned Spec Kit CLI가 설치되어 있습니다.
+- **`relayhub-java`의 `specs/001`–`006` migration 결정을 해소함(2026-09-20):** maintainer는 전체 rewrite가 아니라 구조 정렬만 하기로 선택함 — directory/file 이름은 이미 Spec Kit 자신의 convention과 일치했으므로 그대로 두었고, 각 `spec.md`/`plan.md`/`tasks.md`의 내부 header가 template의 가벼운 metadata block(feature branch, date, status, input)을 얻었으며 기존 prose는 그대로 재사용함; 원본에 기록되지 않은 field는 지어내지 않고 "Not recorded"로 표시함. `contracts.md`/`verification.md`와 `docs/decisions/ADR-*`는 그대로 두었음. 자세한 내용은 그 repository 자신의 `docs/status/current-state.md` 참고.
 
 ## In progress
 
@@ -39,9 +40,8 @@ Last updated: 2026-09-20
 
 ## Next
 
-1. `relayhub-java`의 기존 `specs/001`–`006` tree를 실제 CLI가 있는 지금, Spec Kit 자신의 `specs/<NNN-feature>/` 구조로 migration할지, 아니면 문서화된 의도적 예외로 남길지 결정하기.
-2. 새로 추가된 `related_repositories`와 spec-document convention(이제 Spec Kit 자신의 `specs/`)이 실제 adoption에서 잘 작동하는지, 수정이 필요한지 지켜보기.
-3. `ADR-0006`/`ADR-0007`이 전제한 "아직 증거 없음"이 미래의 adoption 경험과 어긋나면 재검토하기(실제 `PROJECT.yaml` 구조적 실패, 또는 수동 검사로 충분하지 않을 만큼 심하게 표류한 `.ko.md`).
+1. 새로 추가된 `related_repositories`와 spec-document convention(이제 Spec Kit 자신의 `specs/`)이 실제 adoption에서 잘 작동하는지, 수정이 필요한지 지켜보기.
+2. `ADR-0006`/`ADR-0007`이 전제한 "아직 증거 없음"이 미래의 adoption 경험과 어긋나면 재검토하기(실제 `PROJECT.yaml` 구조적 실패, 또는 수동 검사로 충분하지 않을 만큼 심하게 표류한 `.ko.md`).
 
 ## Open decisions
 

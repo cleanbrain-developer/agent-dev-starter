@@ -30,6 +30,7 @@ Last updated: 2026-09-20
 - Accepted `ADR-0014`: excluded vendored Spec Kit assets (`.specify/templates|scripts|workflows|integrations`, any `.claude/skills/speckit-*`/`.agents/skills/speckit-*`) from the `.ko.md` mandate — translating upstream boilerplate that gets replaced wholesale on every version bump has no reader benefit, the same reasoning already accepted for `node_modules`. `.specify/memory/constitution.md` and any project-specific skill remain mandatory. Updated `scripts/check-ko-companions.sh` accordingly; verified 0 missing after the real install.
 - Retrofitted the same real installation into `cleanbrain-me-entrance`, `cleanbrain-me-developer`, and `relayhub-java` (which also had a pre-existing, non-Spec-Kit `specs/001`–`006` tree — migrating that into Spec Kit's own `specs/<NNN-feature>/` structure is separate from installing the CLI itself; see Next).
 - Retrofitted the full V2 migration and the real Spec Kit install into `kioti-crm-discount-enhance-demo` in two commits (structural migration, then the bilingual `.ko.md` rollout) — `docs/decisions/ADR-0001`–`ADR-0007` were left untouched as historical records per that project's own ADR-immutability norm, matching the pattern used for `cleanbrain-me-entrance`/`cleanbrain-me-developer`/`relayhub-java`. All four originally-adopted projects are now on V2 with a real, pinned Spec Kit CLI install.
+- **Resolved `relayhub-java`'s `specs/001`–`006` migration decision (2026-09-20):** the maintainer chose structural alignment only, not a full rewrite — directory/file names already matched Spec Kit's own convention and were left untouched, but each `spec.md`/`plan.md`/`tasks.md`'s internal headers gained the template's lightweight metadata block (feature branch, date, status, input), reusing existing prose as-is; fields with no recorded original data were marked "Not recorded" rather than fabricated. `contracts.md`/`verification.md` and `docs/decisions/ADR-*` were left untouched. See that repository's own `docs/status/current-state.md` for the detailed breakdown.
 
 ## In progress
 
@@ -37,9 +38,8 @@ None currently.
 
 ## Next
 
-1. Decide whether and how to migrate `relayhub-java`'s pre-existing `specs/001`–`006` tree into Spec Kit's own `specs/<NNN-feature>/` structure now that the real CLI is available, or leave it as a documented, intentional exception.
-2. Watch real adoptions for whether the newly-added `related_repositories` and spec-document conventions (now Spec Kit's own `specs/`) hold up, or need revision.
-3. Revisit `ADR-0006`/`ADR-0007` if a future adoption's experience contradicts their "no evidence yet" premise (a real `PROJECT.yaml` structural failure, or a `.ko.md` drifting badly enough that manual checking proves insufficient).
+1. Watch real adoptions for whether the newly-added `related_repositories` and spec-document conventions (now Spec Kit's own `specs/`) hold up, or need revision.
+2. Revisit `ADR-0006`/`ADR-0007` if a future adoption's experience contradicts their "no evidence yet" premise (a real `PROJECT.yaml` structural failure, or a `.ko.md` drifting badly enough that manual checking proves insufficient).
 
 ## Open decisions
 
